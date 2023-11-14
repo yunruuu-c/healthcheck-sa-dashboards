@@ -1273,7 +1273,7 @@
     subtitle_text: 'The worse performing query based on each individual execution
       stage. '
     body_text: "<center>This dashboard is for use in identifying specific design patterns\
-      \ which will impact performance as well as identfying outlyer issues which increase\
+      \ which will impact performance as well as identfying outlier issues which increase\
       \ average runtimes and user perception. It should be used as part of Model,\
       \ Explore & Dashboard optimisation. Each tile represents the worst query for\
       \ that metric and has a link to that worst query below the value. </center>"
