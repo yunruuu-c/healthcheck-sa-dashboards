@@ -3128,10 +3128,6 @@
           filter: Looker Operation
           __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
           __LINE_NUM: 2787
-        - label: Eray Kaşıkçı
-          filter: Eray Kaşıkçı
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2789
       - Everyone Else
       _kind_hint: dimension
       _type_hint: string

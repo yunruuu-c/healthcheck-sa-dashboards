@@ -2547,11 +2547,7 @@
           filter: Looker Operation
           __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
           __LINE_NUM: 2643
-        - label: Eray Kaşıkçı
-          filter: Eray Kaşıkçı
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2645
-      - Everyone Else
+        - Everyone Else
       _kind_hint: dimension
       _type_hint: string
     x_axis_gridlines: false
