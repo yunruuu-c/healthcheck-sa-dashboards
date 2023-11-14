@@ -3446,7 +3446,7 @@
   - name: Dialect
     title: Dialect
     type: field_filter
-    default_value: BigQuery
+    default_value: bigquery_standard_sql
     allow_multiple_values: true
     required: false
     ui_config:
