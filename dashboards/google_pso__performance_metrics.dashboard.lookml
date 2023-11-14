@@ -29,8 +29,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 29
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 30
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -86,8 +86,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 80
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 87
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -106,8 +106,8 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'The average length of time a query spends in queue waiting for a Redshift
-      connection when Redshift does not have open slots or is allocating a connection. '
+    note_text: 'The average length of time a query spends in queue waiting for a database
+      connection when the database does not have open slots or is allocating a connection. '
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -145,8 +145,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 133
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 146
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -166,7 +166,7 @@
     note_state: collapsed
     note_display: hover
     note_text: The time it takes in seconds for the Looker instance to acquire a connection
-      to Redshift. This includes time to look up the credentials for the user, create
+      to the database. This includes time to look up the credentials for the user, create
       the connection pool if it does not already exist, and initialise the connection
       for use.
     listen:
@@ -209,8 +209,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 189
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 210
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -225,8 +225,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 203
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 226
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -288,8 +288,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 256
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 289
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -304,8 +304,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 270
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 305
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -365,8 +365,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 323
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 366
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -381,8 +381,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 337
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 382
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -441,8 +441,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 390
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 442
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -457,8 +457,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 404
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 458
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -517,8 +517,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 457
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 518
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -533,8 +533,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 471
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 534
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -556,7 +556,7 @@
     note_text: 'Time it takes in seconds to prepare the query from the Explore definition.
       This value should be measures in milliseconds. Where greater it suggests that
       simplification of logic within views such as through the use of PDTs are migrating
-      logic back to Redshift will benefit run time. Can also be reduced through the
+      logic back to the database will benefit run time. Can also be reduced through the
       restructuring & simplification of explore join structures.  '
     listen:
       Date: history.created_date
@@ -595,8 +595,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 524
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 596
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -611,8 +611,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 538
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 612
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -631,9 +631,9 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'The average time spent executing a query within Redshift. This can
-      be reduced through restructure of the SQL queries sent to Redshift. Aggregation
-      of the underlying data being queried and optimisation of underlying Redshift
+    note_text: 'The average time spent executing a query within the database. This can
+      be reduced through restructure of the SQL queries sent to the database. Aggregation
+      of the underlying data being queried and optimisation of underlying the database
       structures.  '
     listen:
       Date: history.created_date
@@ -672,8 +672,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 591
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 673
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -688,8 +688,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 605
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 689
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -711,7 +711,7 @@
     note_text: 'The time in seconds necessary for post-processing the query. This
       occurs after the connection is closed. This should measure in milliseconds and
       if larger can be addressed by migrating custom fields back to LookML or migration
-      of Logic back to Redshift. '
+      of Logic back to the database. '
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -750,8 +750,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 659
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 751
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -766,8 +766,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 673
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 767
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -826,8 +826,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 728
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 827
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -842,8 +842,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 742
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 843
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -858,8 +858,8 @@
       - project_init
       - - label: 'Yes'
           filter: "-NULL"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 756
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 859
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -958,8 +958,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 849
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 959
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -974,8 +974,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 863
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 975
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -990,8 +990,8 @@
       - project_init
       - - label: 'Yes'
           filter: "-NULL"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 877
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 991
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1103,8 +1103,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 989
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1104
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1119,8 +1119,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1003
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1120
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1135,8 +1135,8 @@
       - project_init
       - - label: 'Yes'
           filter: "-NULL"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1017
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1136
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1214,8 +1214,8 @@
       - query_metrics.execute_main_query
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1094
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1215
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1356,8 +1356,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1229
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1357
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1372,8 +1372,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1243
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1373
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1388,8 +1388,8 @@
       - project_init
       - - label: 'Yes'
           filter: "-NULL"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1257
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1389
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1583,8 +1583,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1423
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1584
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1599,8 +1599,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1437
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1600
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1615,8 +1615,8 @@
       - project_init
       - - label: 'Yes'
           filter: "-NULL"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1451
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1616
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1811,8 +1811,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1616
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1812
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1827,8 +1827,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1630
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1828
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1843,8 +1843,8 @@
       - project_init
       - - label: 'Yes'
           filter: "-NULL"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1644
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1844
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2072,8 +2072,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1863
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2073
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2088,8 +2088,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1877
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2089
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2104,8 +2104,8 @@
       - project_init
       - - label: 'Yes'
           filter: "-NULL"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 1891
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2105
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2290,8 +2290,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2054
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2291
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2306,8 +2306,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2068
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2307
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2365,8 +2365,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2121
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2366
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2381,8 +2381,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2135
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2382
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2441,8 +2441,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2190
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2442
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2457,8 +2457,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2204
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2458
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2473,8 +2473,8 @@
       - project_init
       - - label: 'Yes'
           filter: "-NULL"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2218
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2474
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2552,8 +2552,8 @@
       - query_metrics.execute_main_query
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2295
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2553
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2678,7 +2678,8 @@
     model: system__activity
     explore: history
     type: looker_pie
-    fields: [history.query_run_count, users]
+    fields: [history.query_run_count, user.name]
+    filters: {}
     sorts: [history.query_run_count desc]
     limit: 5000
     column_limit: 50
@@ -2696,58 +2697,6 @@
       _kind_hint: measure
       _type_hint: number
       is_disabled: true
-    - category: dimension
-      description: ''
-      label: Users
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: users
-      args:
-      - user.name
-      - - label: Burst Reporting
-          filter: Burst Reporting  User
-        - label: Scott Shepherd
-          filter: Scott Shepherd2
-        - label: Siddhartha Geddam
-          filter: Siddhartha Geddam
-        - label: William Coull
-          filter: William Coull
-        - label: Steven Gait
-          filter: Steven Gait
-        - label: Stuart Rogers
-          filter: Stuart Rogers
-        - label: Ruth McElroy
-          filter: Ruth McElroy
-        - label: Andrew Doyle
-          filter: Andrew Doyle
-        - label: Tadhg Dornan
-          filter: Tadhg Dornan
-        - label: Aisling Maher
-          filter: Aisling Maher
-        - label: Craig Martin
-          filter: Craig Martin
-        - label: Glody Mbemba
-          filter: Glody Mbemba
-        - label: Dean Connolly
-          filter: Dean Connolly
-        - label: Brian O'Seanachain
-          filter: Brian OSeanachain
-        - label: Andrew Branigan
-          filter: Andrew Branigan
-        - label: Daniel Snell
-          filter: Daniel Snell
-        - label: Josh O'Curry
-          filter: Josh OCurry
-        - label: Angela Scannell
-          filter: Angela Scannell
-        - label: Jonathan Beirne
-          filter: Jonathan Beirne
-        - label: Schedule Users
-          filter: Schedule User 1,Schedule User 2,Schedule User 3
-      - Everyone Else
-      _kind_hint: dimension
-      _type_hint: string
     value_labels: legend
     label_type: labPer
     x_axis_gridlines: false
@@ -2819,8 +2768,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2511
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2820
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2835,8 +2784,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2525
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2836
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2918,8 +2867,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2601
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2919
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2934,8 +2883,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2615
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2935
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -3009,8 +2958,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2684
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3010
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -3025,8 +2974,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2698
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3026
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -3082,7 +3031,6 @@
   - name: ''
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: |-
       <nav style="font-size: 18px; padding: 5px 10px 0 10px; height: 60px">
       <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__performance_metrics">
@@ -3118,16 +3066,16 @@
       - user.name
       - - label: Looker Delivery
           filter: Looker Delivery
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2783
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3119
         - label: Salesforce Integration
           filter: Salesforce Integration
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2785
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3123
         - label: Looker Operation
           filter: Looker Operation
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2787
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3127
       - Everyone Else
       _kind_hint: dimension
       _type_hint: string
@@ -3202,20 +3150,20 @@
       - user.name
       - - label: Looker Delivery
           filter: Looker Delivery
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2783
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3203
         - label: Salesforce Integration
           filter: Salesforce Integration
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2785
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3207
         - label: Looker Operation
           filter: Looker Operation
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2787
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3211
         - label: Eray Kaşıkçı
           filter: Eray Kaşıkçı
-          __FILE: data_development/dashboards/Google_PSO-Performance_metrics.dashboard.lookml
-          __LINE_NUM: 2789
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3215
       - Everyone Else
       _kind_hint: dimension
       _type_hint: string
@@ -3328,8 +3276,12 @@
       - dashboard.refresh_interval_ordered
       - - label: 'Yes'
           filter: not null
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3329
         - label: 'Yes'
           filter: ">0"
+          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 3331
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -3494,7 +3446,7 @@
   - name: Dialect
     title: Dialect
     type: field_filter
-    default_value: redshift
+    default_value: BigQuery
     allow_multiple_values: true
     required: false
     ui_config:

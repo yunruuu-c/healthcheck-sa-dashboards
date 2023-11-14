@@ -1344,8 +1344,8 @@
     col: 0
     width: 24
     height: 3
-  - title: Bottom 20 Performing Queries By Redshift Query Execution Time
-    name: Bottom 20 Performing Queries By Redshift Query Execution Time
+  - title: Bottom 20 Performing Queries By Database Query Execution Time
+    name: Bottom 20 Performing Queries By Database Query Execution Time
     model: system__activity
     explore: query_metrics
     type: looker_bar
@@ -1779,7 +1779,7 @@
   - name: Dialect
     title: Dialect
     type: field_filter
-    default_value: redshift
+    default_value: BigQuery
     allow_multiple_values: true
     required: false
     ui_config:

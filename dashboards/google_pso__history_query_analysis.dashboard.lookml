@@ -2692,7 +2692,7 @@
   - name: Dialect
     title: Dialect
     type: field_filter
-    default_value: redshift
+    default_value: BigQuery
     allow_multiple_values: true
     required: false
     ui_config:
