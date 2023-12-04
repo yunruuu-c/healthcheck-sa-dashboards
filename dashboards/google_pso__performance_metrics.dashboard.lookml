@@ -246,9 +246,9 @@
     note_state: collapsed
     note_display: hover
     note_text: "Time in seconds that the query spends waiting for a connection to\
-      \ be\navailable for the user to run the query. There is a limit of 60 concurrent\
+      \ be\navailable for the user to run the query. There is a limit of 15 concurrent\
       \ queries per user implemented within Looker. Where a user has greater than\
-      \ 60 queries running concurrently, a queue will be created and queries will\
+      \ 15 queries running concurrently, a queue will be created and queries will\
       \ be held. This can be an issue  when working with excessively large dashboards.\
       \  \n"
     listen:
