@@ -1,3 +1,3 @@
-connection: "app_stub"
+connection: "thelook"
 
 include: "/dashboards/*.dashboard.lookml"
