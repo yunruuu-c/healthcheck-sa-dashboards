@@ -848,22 +848,6 @@
       _kind_hint: dimension
       _type_hint: string
     - category: dimension
-      description: ''
-      label: Has Project Init (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: has_project_init_yesno
-      args:
-      - project_init
-      - - label: 'Yes'
-          filter: "-NULL"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 859
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
       expression: "${query_metrics.project_init}"
       label: project init
       value_format:
@@ -976,22 +960,6 @@
           filter: ">0"
           __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
           __LINE_NUM: 975
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
-      description: ''
-      label: Has Project Init (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: has_project_init_yesno
-      args:
-      - project_init
-      - - label: 'Yes'
-          filter: "-NULL"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 991
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1121,22 +1089,6 @@
           filter: ">0"
           __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
           __LINE_NUM: 1120
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
-      description: ''
-      label: Has Project Init (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: has_project_init_yesno
-      args:
-      - project_init
-      - - label: 'Yes'
-          filter: "-NULL"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1136
       - 'No'
       _kind_hint: dimension
       _type_hint: string
