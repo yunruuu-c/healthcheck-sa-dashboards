@@ -1330,22 +1330,6 @@
       _kind_hint: dimension
       _type_hint: string
     - category: dimension
-      description: ''
-      label: Has Project Init (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: has_project_init_yesno
-      args:
-      - project_init
-      - - label: 'Yes'
-          filter: "-NULL"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1389
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
       expression: "${query_metrics.project_init}"
       label: project init
       value_format:
@@ -1553,22 +1537,6 @@
           filter: ">0"
           __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
           __LINE_NUM: 1600
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
-      description: ''
-      label: Has Project Init (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: has_project_init_yesno
-      args:
-      - project_init
-      - - label: 'Yes'
-          filter: "-NULL"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1616
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1781,22 +1749,6 @@
           filter: ">0"
           __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
           __LINE_NUM: 1828
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
-      description: ''
-      label: Has Project Init (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: has_project_init_yesno
-      args:
-      - project_init
-      - - label: 'Yes'
-          filter: "-NULL"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1844
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2042,22 +1994,6 @@
           filter: ">0"
           __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
           __LINE_NUM: 2089
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
-      description: ''
-      label: Has Project Init (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: has_project_init_yesno
-      args:
-      - project_init
-      - - label: 'Yes'
-          filter: "-NULL"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2105
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2415,22 +2351,6 @@
       _kind_hint: dimension
       _type_hint: string
     - category: dimension
-      description: ''
-      label: Has Project Init (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: has_project_init_yesno
-      args:
-      - project_init
-      - - label: 'Yes'
-          filter: "-NULL"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2474
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
       expression: "${query_metrics.project_init}"
       label: project init
       value_format:
@@ -2633,7 +2553,7 @@
     fields: [history.query_run_count, user.name]
     filters: {}
     sorts: [history.query_run_count desc]
-    limit: 5000
+    limit: 50
     column_limit: 50
     dynamic_fields:
     - args:
@@ -3208,75 +3128,6 @@
     col: 0
     width: 24
     height: 10
-  - title: Is Dashboard Refresh On
-    name: Is Dashboard Refresh On
-    model: system__activity
-    explore: dashboard_performance
-    type: single_value
-    fields: [is_dashboard_refresh_on]
-    sorts: [is_dashboard_refresh_on]
-    limit: 1
-    column_limit: 50
-    dynamic_fields:
-    - category: dimension
-      description: ''
-      label: Is Dashboard Refresh On
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: is_dashboard_refresh_on
-      args:
-      - dashboard.refresh_interval_ordered
-      - - label: 'Yes'
-          filter: not null
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3329
-        - label: 'Yes'
-          filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3331
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    custom_color_enabled: true
-    show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    hidden_pivots: {}
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: true
-    defaults_version: 1
-    listen: {}
-    row:
-    col:
-    width:
-    height:
   filters:
   - name: Date
     title: Date
