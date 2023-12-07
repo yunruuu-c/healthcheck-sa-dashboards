@@ -47,8 +47,7 @@
     defaults_version: 1
     note_state: collapsed
     note_display: hover
-    note_text: The amount of time a query takes to run from beginning to end inclusive
-      of all pre and post main query execution activities
+    note_text: The average amount of time a query takes to complete inclusive of pre query processing. Main query execution, totals execution and post query processing.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -106,8 +105,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'The average length of time a query spends in queue waiting for a database
-      connection when the database does not have open slots or is allocating a connection. '
+    note_text: The amount of time a query is queued & waiting for a free worker within Looker after initialisation. Review connections per node settings to ensure they are the maximum allowed value and review large dashboards within the instance to identify any over Lookers recommendation of 25 tiles per dashboard which are being heavily used. Restructure dashboards to reduce the number of queries generated. This metric is also improved when optimising main query execution by increasing traffic flow.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -165,10 +163,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: The time it takes in seconds for the Looker instance to acquire a connection
-      to the database. This includes time to look up the credentials for the user, create
-      the connection pool if it does not already exist, and initialise the connection
-      for use.
+    note_text: The time it takes for Looker to obtain a connection to your database. This includes time to look up the credentials (or key) for the user, create the connection pool if it does not already exist, and initialise the connection for use. The recommended benchmark is 0.2383 seconds. If this is higher or impacts a large number of queries it suggests that Looker is sending more queries than the database is capable of processing concurrently. Review the max connections per node value in your connections to optimise. This metric is also improved when reducing main query execution time.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -245,12 +240,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: "Time in seconds that the query spends waiting for a connection to\
-      \ be\navailable for the user to run the query. There is a limit of 15 concurrent\
-      \ queries per user implemented within Looker. Where a user has greater than\
-      \ 15 queries running concurrently, a queue will be created and queries will\
-      \ be held. This can be an issue  when working with excessively large dashboards.\
-      \  \n"
+    note_text: Looker has a default per user/per node throttler ensuring that each user can only run 15 queries per node concurrently. This ensures bandwidth is available for all users, if Per User Throttler Average is high and impacts a high number of queries, review schedules with a view to disperse them throughout the time period. Also review Large Dashboards which have over 25 tiles. Review use of merged queries also as this can see dashboards with fewer than 25 tiles generate a larger volume of queries and see slow load times. If necessary create explores which make merged queries redundant. This is also improved by optimising main query execution time.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -324,10 +314,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: "The total number of queries within the period including those run\
-      \ directly against the database and who's results were retrieved from Cache.\
-      \ \nNOTE: This only reflects queries which capture query metric values. History\
-      \ explore results may be higher. "
+    note_text: The number of queries executed within the time period and total number of queries executed directly against the database. Review datagroup policies if the number of cached queries is unexpectedly high. Expected cache/database query ratio can vary depending on your use cases, e.g. if queries are usually run filtered at id level it would be low vs if few filters are used on dashboards with high usage where it should be high.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -401,9 +388,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: "Time it takes in seconds to initialize the Explore before starting\
-      \ to\nprepare it. When this figure is excessive it suggests that simplification\
-      \ of the explore would see performance improvement. "
+    note_text: This is the average time taken to initialise your explores from code. The recommended benchmark for this metric is 0.2333 This should only impact a small portion of your queries. If high, review explores for optimisation either through restructure or efficiency of joins, removal of unnecessary dimensions and measures and review of developer deployment frequency as frequent deployments of Lookml code at peak usage invalidates cache.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -477,9 +462,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: "Time it takes in seconds to load and parse the model required to run\
-      \ a\nquery. When greater than milliseconds then it suggests over complexity\
-      \ of models and simplification such as breaking out explores is merited "
+    note_text: This is the average time taken to initialise your models from code. The recommended benchmark for this metric is 2.4199. This should only impact a small portion of your queries. If the average time is high then performance may benefit from models being broken out into smaller components. If the number of queries impacted is high, review the frequency of deployments and review potential implementation of deployment windows.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -553,11 +536,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'Time it takes in seconds to prepare the query from the Explore definition.
-      This value should be measures in milliseconds. Where greater it suggests that
-      simplification of logic within views such as through the use of PDTs are migrating
-      logic back to the database will benefit run time. Can also be reduced through the
-      restructuring & simplification of explore join structures.  '
+    note_text: The amount of time Looker takes to prepare a SQL query based Lookml defined in your projects. The recommended benchmark for this metric is 0.4389 seconds. If this appears to be excessively high, review Lookml logic, consider persistent derived tables or migrating calculations back to the database. Move custom dimensions and measures into your Lookml model where possible. Also enable new Lookml runtime if not already done so.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -631,10 +610,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'The average time spent executing a query within the database. This can
-      be reduced through restructure of the SQL queries sent to the database. Aggregation
-      of the underlying data being queried and optimisation of underlying the database
-      structures.  '
+    note_text: The amount of time the main query takes to complete within the database. The recommended benchmark is 4.8698 seconds. This figure can be optimised through aggregation of data, the review of SQL queries to remove inefficiencies such as unnecessary sub queries, inclusion of templated filters in derived tables and standard database optimization techniques such as indexing, partitioning.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -708,10 +684,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'The time in seconds necessary for post-processing the query. This
-      occurs after the connection is closed. This should measure in milliseconds and
-      if larger can be addressed by migrating custom fields back to LookML or migration
-      of Logic back to the database. '
+    note_text: This is the amount of time taken to format and stream results to the user browser cache and should be present in most queries. The recommended benchmark is 0.2234s. If higher, review the number of custom dimensions and measures & table calculations, use of pivots, use of merged queries and row limits within high throughput dashboards. Identify if custom dimensions and measures can be moved back into your Lookml model, if pivots are optimised to include only necessary information. Can merged queries be removed via creation of new explores and that row limits are in line with requirements. For example if using a single value visualisation. Ensure that you are not querying with a limit to 5000 rows.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -894,9 +867,7 @@
     label_type: labPer
     note_state: collapsed
     note_display: hover
-    note_text: This is the time it takes for the project to be initialized, validated,
-      etc (which will then be used to build / parse / etc the model), or read from
-      cache.
+    note_text: The amount of time taken to initialise your project, This should be under 0.0 seconds (e.g. 0.09). If higher it may be valuable to consider breaking the project out into smaller components in a Hub and Spoke model
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -1265,10 +1236,7 @@
     hidden_fields: [average_of_execute_main_query, average_of_async_processing]
     note_state: collapsed
     note_display: hover
-    note_text: "The percentage of time taken for Looker to process a query outside\
-      \ of main query execution. I.E. Prep and post query processing. Calculated as\
-      \ Average Async Runtime -  Main Query Execution Time. \nNOTE: Calculated based\
-      \ only on values which have query metric results. "
+    note_text: The amount of time a query spends being processed exclusively within Looker. This captures the percentage or pre & post processing as a total of the overall query run time.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -2214,8 +2182,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'Time it takes in seconds to pull the model definition from cache.
-      Includes time it takes to parse the model. '
+    note_text: This is the average time taken to validate your model from cache. This should impact a large proportion of your queries and execute faster than init from compute, returning in under a second. If the average time is high then performance may benefit from models being broken out into smaller components.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -2289,7 +2256,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: Time it takes in seconds to pull the Explore initialization from cache.
+    note_text: This is the average time taken to validate explore code from cache. The recommended benchmark for this metric is 0.3513. This metric should cover a larger proportion of queries. If higher, review explores for optimisation either through restructure or efficiency of joins as well as moving custom dimensions and measures to LookML.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -2690,10 +2657,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'The average time in seconds taken to run a grand total query. Grand
-      total queries are optional and when reviewing a specific dashboard it can be
-      useful to identify long running totals queries and if they can be removed or
-      aggregated. '
+    note_text: Looker executes grand totals queries separately to main query execution. Grand Totals (The sum of subtotals) should not be applied to all queries. If query totals are running against a large volume of queries and adding significantly to run time, review that all totals necessary for dashboards with high throughput.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -2782,9 +2746,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'The average time in seconds taken to run a totals query. Total queries
-      are optional and when reviewing a specific dashboard it can be useful to identify
-      long running totals queries and if they can be removed or aggregated. '
+    note_text: Looker executes totals queries separately to main query execution. Totals should not be applied to all queries. If query totals are running against a large volume of queries and adding significantly to run time, review that all totals are necessary for dashboards with high throughput
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
@@ -2873,10 +2835,7 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'The average time in seconds taken to run a row totals query. Total
-      queries are optional and when reviewing a specific dashboard it can be useful
-      to identify long running totals queries and if they can be removed, aggregated
-      or restructured. '
+    note_text: Looker executes row totals queries separately to main query execution. Row totals should not be applied to all queries. If query totals are running against a large volume of queries and adding significantly to run time, review that totals are necessary for dashboards with high throughput.
     listen:
       Date: history.created_date
       Workspace ID: history.workspace_id
