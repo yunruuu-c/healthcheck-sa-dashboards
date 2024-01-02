@@ -21,7 +21,7 @@ To install the dashboards, you will need to:
 
 The following dashboards are available:
 
-## [Performance Metrics](//documentation/performance_metrics.md)
+## [Performance Metrics](/documentation/performance_metrics.md)
  
 * **Outliers**
     * This dashboard provides a similar view to performance metrics however showing the worst performing query of each metric instead of average. This allows for identification of sub-optimal design patterns which may be present in both the LookML model as well as dashboard design.   
