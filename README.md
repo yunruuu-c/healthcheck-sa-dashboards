@@ -42,7 +42,7 @@ Once complete you will be able to see your dashboards in the blocks page of your
 ![Explore](/documentation/images/blocks_screen.png)
 
 
-## Dashboards
+# Dashboards
 
 The following dashboards are available:
 
