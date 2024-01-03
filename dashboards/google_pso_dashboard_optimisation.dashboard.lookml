@@ -179,8 +179,8 @@
     col: 5
     width: 3
     height: 4
-  - title: Full Dashboard Competed Runtime
-    name: Full Dashboard Competed Runtime
+  - title: Full Dashboard Completed Runtime
+    name: Full Dashboard Completed Runtime
     model: system__activity
     explore: dashboard_performance
     type: single_value
@@ -197,7 +197,7 @@
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    single_value_title: Full Dashboard Competed Ave Runtime
+    single_value_title: Full Dashboard Completed Ave Runtime
     value_format: '0.00'
     show_view_names: false
     show_row_numbers: true
