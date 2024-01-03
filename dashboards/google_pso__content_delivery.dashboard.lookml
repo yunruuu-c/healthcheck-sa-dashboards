@@ -456,17 +456,6 @@
     col: 0
     width: 8
     height: 6
-  - name: ''
-    type: text
-    title_text: ''
-    body_text: '[{"type":"p","children":[{"text":""}],"id":1688639280940},{"type":"h1","children":[{"text":"Action"}]},{"type":"p","children":[{"text":"Create
-      API to delete schedule based on error execution "}],"id":1688639290338},{"type":"p","id":1688639308641,"children":[{"text":"Group
-      by error"}]}]'
-    rich_content_json: '{"format":"slate"}'
-    row: 33
-    col: 0
-    width: 5
-    height: 4
   - title: Schedules to Delete
     name: Schedules to Delete
     model: system__activity
