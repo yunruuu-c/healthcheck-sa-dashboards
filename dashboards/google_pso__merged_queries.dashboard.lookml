@@ -1200,7 +1200,7 @@
     series_text_format:
       pivots_used: {}
     conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#0666EB",
-        font_color: !!null '', color_application: {collection_id: revolut-light, palette_id: revolut-light-sequential-0},
+        font_color: !!null '', color_application: {collection_id: light, palette_id: light-sequential-0},
         bold: false, italic: false, strikethrough: false, fields: []}]
     x_axis_gridlines: false
     y_axis_gridlines: true
