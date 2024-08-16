@@ -3,7 +3,9 @@
   title: 'Google PSO - Dashboard Optimisation '
   layout: newspaper
   preferred_viewer: dashboards-next
+  load_configuration: wait
   description: ''
+  filters_location_top: false
   preferred_slug: aTCcyoLQqTX8YRx82dzFO0
   elements:
   - title: Stream to Cache
@@ -28,7 +30,7 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
           __LINE_NUM: 29
       - 'No'
       _kind_hint: dimension
@@ -44,7 +46,7 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
           __LINE_NUM: 45
       - 'No'
       _kind_hint: dimension
@@ -71,12 +73,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 19
     col: 10
     width: 4
@@ -109,11 +111,11 @@
     note_text: 'The number of query tiles on the dashboard. '
     listen:
       Model: query.model
-      Dashboard Title: dashboard.title
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 8
-    col: 5
+    col: 4
     width: 3
     height: 4
   - title: Last Updated by
@@ -172,11 +174,11 @@
       person to update it?
     listen:
       Model: query.model
-      Dashboard Title: dashboard.title
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 4
-    col: 5
+    col: 3
     width: 3
     height: 4
   - title: Full Dashboard Completed Runtime
@@ -214,11 +216,11 @@
     defaults_version: 1
     listen:
       Created Date: history.created_date
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 19
     col: 1
     width: 5
@@ -245,11 +247,11 @@
     defaults_version: 1
     listen:
       Created Date: history.created_date
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 15
     col: 1
     width: 4
@@ -275,40 +277,40 @@
       - query.filters
       - - label: 'Yes'
           filter: "%Date%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
           __LINE_NUM: 276
         - label: 'Yes'
           filter: "%202%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 278
-        - label: 'Yes'
-          filter: "%201%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
           __LINE_NUM: 280
         - label: 'Yes'
-          filter: "%date%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 282
-        - label: 'Yes'
-          filter: "%month%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          filter: "%201%"
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
           __LINE_NUM: 284
         - label: 'Yes'
-          filter: "%day%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 286
-        - label: 'Yes'
-          filter: "%hour%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          filter: "%date%"
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
           __LINE_NUM: 288
         - label: 'Yes'
+          filter: "%month%"
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 292
+        - label: 'Yes'
+          filter: "%day%"
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 296
+        - label: 'Yes'
+          filter: "%hour%"
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 300
+        - label: 'Yes'
           filter: "%week%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 290
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 304
         - label: 'Yes'
           filter: "%time%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 292
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 308
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -356,12 +358,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 15
     col: 9
     width: 3
@@ -394,15 +396,15 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 4
     col: 1
-    width: 4
+    width: 2
     height: 4
   - title: Dashboard Has Filters
     name: Dashboard Has Filters
@@ -473,14 +475,14 @@
       level of usage merits. '
     listen:
       Created Date: history.created_date
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 4
-    col: 8
-    width: 3
+    col: 6
+    width: 2
     height: 4
   - title: Error Queries
     name: Error Queries
@@ -514,14 +516,14 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 15
     col: 19
-    width: 4
+    width: 5
     height: 4
   - title: Run on Load Enabled
     name: Run on Load Enabled
@@ -581,11 +583,11 @@
       prevents sending unnecessary queries to the database. '
     listen:
       Model: query.model
-      Dashboard Title: dashboard.title
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 4
-    col: 11
+    col: 8
     width: 3
     height: 4
   - title: Dashboard Run Count
@@ -613,12 +615,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 15
     col: 12
     width: 3
@@ -700,12 +702,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 15
     col: 5
     width: 4
@@ -748,15 +750,15 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 8
     col: 1
-    width: 4
+    width: 3
     height: 4
   - title: Max Row Limit From Dashboard
     name: Max Row Limit From Dashboard
@@ -794,12 +796,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 15
     col: 15
     width: 4
@@ -825,8 +827,8 @@
       - dashboard.refresh_interval_ordered
       - - label: 'No'
           filter: 'null'
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 808
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 826
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -841,8 +843,8 @@
       - dashboard.refresh_interval_ordered
       - - label: '1'
           filter: 'null'
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 822
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 842
       - '2'
       _kind_hint: dimension
       _type_hint: string
@@ -896,14 +898,14 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 8
-    col: 12
+    col: 10
     width: 3
     height: 4
   - title: Has Custom Fields
@@ -929,12 +931,12 @@
       - query.dynamic_fields
       - - label: 'No'
           filter: "[]"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 908
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 930
         - label: 'No'
           filter: 'NULL'
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 910
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 934
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -949,12 +951,12 @@
       - query.dynamic_fields
       - - label: '2'
           filter: "[]"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 924
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 950
         - label: '2'
           filter: 'NULL'
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 926
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 954
       - '1'
       _kind_hint: dimension
       _type_hint: string
@@ -1008,19 +1010,21 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 4
-    col: 17
+    col: 16
     width: 3
     height: 4
   - name: Dashboard Summary
     type: text
     title_text: Dashboard Summary
+    subtitle_text: See also <a href="/dashboards/system__activity::dashboard_performance?Dashboard+ID=">Dashboard
+      Diagnostics</a> Dashboard
     body_text: ''
     row: 2
     col: 0
@@ -1047,40 +1051,40 @@
       - query.filters
       - - label: 'Yes'
           filter: "%Date%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1019
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1048
         - label: 'Yes'
           filter: "%202%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1021
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1052
         - label: 'Yes'
           filter: "%201%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1023
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1056
         - label: 'Yes'
           filter: "%date%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1025
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1060
         - label: 'Yes'
           filter: "%month%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1027
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1064
         - label: 'Yes'
           filter: "%day%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1029
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1068
         - label: 'Yes'
           filter: "%hour%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1031
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1072
         - label: 'Yes'
           filter: "%week%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1033
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1076
         - label: 'Yes'
           filter: "%time%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1035
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1080
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1095,40 +1099,40 @@
       - query.filters
       - - label: '1'
           filter: "%Date%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1049
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1096
         - label: '1'
           filter: "%202%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1051
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1100
         - label: '1'
           filter: "%201%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1053
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1104
         - label: '1'
           filter: "%date%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1055
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1108
         - label: '1'
           filter: "%month%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1057
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1112
         - label: '1'
           filter: "%day%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1059
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1116
         - label: '1'
           filter: "%hour%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1061
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1120
         - label: '1'
           filter: "%week%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1063
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1124
         - label: '1'
           filter: "%time%"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1065
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1128
       - '2'
       _kind_hint: dimension
       _type_hint: string
@@ -1182,15 +1186,15 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 8
-    col: 8
-    width: 4
+    col: 7
+    width: 3
     height: 4
   - name: ''
     type: text
@@ -1242,11 +1246,11 @@
       creating explores which make merged queries redundant where possible. '
     listen:
       Model: query.model
-      Dashboard Title: dashboard.title
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 4
-    col: 14
+    col: 13
     width: 3
     height: 4
   - title: Avg Tile Database Execution Time
@@ -1271,8 +1275,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1207
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1272
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1287,8 +1291,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1223
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1288
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1312,12 +1316,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 19
     col: 6
     width: 4
@@ -1382,12 +1386,12 @@
       at once.
     listen:
       Model: query.model
-      Dashboard Title: dashboard.title
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 8
-    col: 21
-    width: 2
+    col: 19
+    width: 3
     height: 4
   - title: No of Merged Query tiles
     name: No of Merged Query tiles
@@ -1428,11 +1432,11 @@
     note_text: The number of tiles on the dashboard which have merged queries
     listen:
       Model: query.model
-      Dashboard Title: dashboard.title
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 8
-    col: 15
+    col: 13
     width: 3
     height: 4
   - title: Tiles with Pivots
@@ -1471,11 +1475,11 @@
     note_text: 'The number of tiles with pivots on the dashboard. '
     listen:
       Model: query.model
-      Dashboard Title: dashboard.title
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 4
-    col: 20
+    col: 19
     width: 3
     height: 4
   - title: Tiles with Custom Fields
@@ -1514,11 +1518,11 @@
     note_text: 'The number of tiles on the dashboard which are leveraging custom fields. '
     listen:
       Model: query.model
-      Dashboard Title: dashboard.title
       User Name: user.name
       Explore: query.view
+      Dashboard ID: dashboard.id
     row: 8
-    col: 18
+    col: 16
     width: 3
     height: 4
   - title: Cache init
@@ -1541,8 +1545,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1477
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1542
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1557,8 +1561,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1493
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1558
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1592,12 +1596,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 19
     col: 14
     width: 3
@@ -1622,8 +1626,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1559
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1623
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1638,8 +1642,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1575
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1639
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1673,12 +1677,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 19
     col: 17
     width: 4
@@ -1703,8 +1707,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1641
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1704
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1719,8 +1723,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: health_sa/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
-          __LINE_NUM: 1657
+          __FILE: google-pso-healthcheck/dashboards/google_pso_dashboard_optimisation.dashboard.lookml
+          __LINE_NUM: 1720
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1757,12 +1761,12 @@
     listen:
       Created Date: history.created_date
       Model: query.model
-      Dashboard Title: dashboard.title
       Dev/Prod Mode: history.workspace_id
       Source: history.source
       User Name: user.name
       Explore: query.view
       Query Status: history.status
+      Dashboard ID: dashboard.id
     row: 19
     col: 21
     width: 3
@@ -1773,18 +1777,230 @@
     subtitle_text: ''
     body_text: |-
       <nav style="font-size: 18px; padding: 5px 10px 0 10px; height: 60px">
-            <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics">Performance Metrics</a>
-              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers">Outliers</a>
-              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis">History</a>
-              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery">Schedules</a>
-              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries">Merged Queries</a>
-              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count">Large Dashboards</a>
-              <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_">Dashboard Optimisation</a>
+            <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics?">Performance Metrics</a>
+              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers?">Outliers</a>
+              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis?">History</a>
+              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery?">Schedules</a>
+              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries?">Merged Queries</a>
+              <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count?">Large Dashboards</a>
+              <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__merged_queries?1">Dashboard Optimisation</a>
             </nav>
     row: 0
     col: 1
     width: 16
     height: 2
+  - title: Query Runtime by Tile
+    name: Query Runtime by Tile
+    model: system__activity
+    explore: query_metrics
+    type: looker_column
+    fields: [dashboard_element.title, history.average_runtime, query_metrics.acquire_connection_average,
+      query_metrics.per_user_throttler_average, query_metrics.explore_init_average,
+      query_metrics.marshalled_cache_load_average, query_metrics.model_init_computed_average,
+      query_metrics.model_init_cache_average, query_metrics.prepare_average, query_metrics.cache_load_average,
+      query_metrics.execute_main_query_average, query_metrics.load_main_query_in_memory_average,
+      query_metrics.load_process_and_stream_main_query_average, query_metrics.postprocessing_average,
+      query_metrics.stream_to_cache_average, query_metrics.queued_average]
+    filters:
+      dashboard_element.title: "-NULL"
+      history.created_date: yesterday
+      user.email: ''
+    sorts: [history.average_runtime desc]
+    limit: 500
+    column_limit: 50
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+
+    x_axis_zoom: true
+    y_axis_zoom: true
+    series_colors: {}
+    hidden_pivots: {}
+    defaults_version: 1
+    hidden_fields: [history.average_runtime]
+    listen:
+      Dashboard ID: dashboard.id
+    row: 23
+    col: 1
+    width: 23
+    height: 18
+  - title: User Count
+    name: User Count
+    model: system__activity
+    explore: history
+    type: single_value
+    fields: [history.dashboard_user]
+    filters: {}
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: false
+    defaults_version: 1
+    hidden_pivots: {}
+    listen:
+      Created Date: history.created_date
+      Query Status: history.status
+      Dev/Prod Mode: history.workspace_id
+      Source: history.source
+      Dashboard ID: dashboard.id
+    row: 4
+    col: 11
+    width: 2
+    height: 4
+  - title: Dashboard Run Count
+    name: Dashboard Run Count (2)
+    model: system__activity
+    explore: history
+    type: single_value
+    fields: [history.dashboard_run_count]
+    filters:
+      dashboard.id_as_string: '29674'
+    limit: 500
+    column_limit: 50
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: false
+    defaults_version: 1
+    hidden_pivots: {}
+    listen:
+      Created Date: history.created_date
+      Query Status: history.status
+      Dev/Prod Mode: history.workspace_id
+      Source: history.source
+      Dashboard ID: dashboard.id
+    row: 4
+    col: 22
+    width: 2
+    height: 8
+  - title: Most Active Dashboard Users
+    name: Most Active Dashboard Users
+    model: system__activity
+    explore: history
+    type: looker_grid
+    fields: [user.name, history.dashboard_run_count, history.average_runtime, user.email]
+    filters:
+      user.name: "-NULL"
+    sorts: [history.dashboard_run_count desc 0]
+    limit: 30
+    column_limit: 50
+    show_view_names: false
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    limit_displayed_rows: false
+    enable_conditional_formatting: true
+    header_text_alignment: left
+    header_font_size: '12'
+    rows_font_size: '12'
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    show_sql_query_menu_options: false
+    show_totals: true
+    show_row_totals: true
+    truncate_header: false
+    minimum_column_width: 75
+    series_cell_visualizations:
+      query.count:
+        is_active: true
+    conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#1A73E8",
+        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+        strikethrough: false, fields: !!null ''}]
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: Total Queries Run, orientation: bottom, series: [{axisId: query.count,
+            id: query.count, name: Query}], showLabels: true, showValues: true, unpinAxis: false,
+        tickDensity: default, tickDensityCustom: 5, type: linear}]
+    defaults_version: 1
+    hidden_pivots: {}
+    listen:
+      Created Date: history.created_date
+      Query Status: history.status
+      Dev/Prod Mode: history.workspace_id
+      Source: history.source
+      Dashboard ID: dashboard.id
+    row: 41
+    col: 1
+    width: 23
+    height: 13
   filters:
   - name: Created Date
     title: Created Date
@@ -1811,7 +2027,7 @@
       display: popover
     model: system__activity
     explore: query
-    listens_to_filters: [Dashboard Title, Model, User Name]
+    listens_to_filters: [Model, User Name]
     field: query.view
   - name: Model
     title: Model
@@ -1824,21 +2040,22 @@
       display: popover
     model: system__activity
     explore: query
-    listens_to_filters: [Dashboard Title, Explore, User Name]
+    listens_to_filters: [Explore, User Name]
     field: query.model
-  - name: Dashboard Title
-    title: Dashboard Title
+  - name: Dashboard ID
+    title: Dashboard ID
     type: field_filter
-    default_value:
-    allow_multiple_values: true
+    default_value: ''
+    allow_multiple_values: false
     required: true
     ui_config:
-      type: dropdown_menu
-      display: inline
+      type: advanced
+      display: popover
+      options: []
     model: system__activity
     explore: dashboard
-    listens_to_filters: [Explore, Model, User Name]
-    field: dashboard.title
+    listens_to_filters: []
+    field: dashboard.id
   - name: Query Status
     title: Query Status
     type: field_filter
@@ -1868,7 +2085,7 @@
   - name: Source
     title: Source
     type: field_filter
-    default_value: ''
+    default_value: -"scheduled_task",-suggest
     allow_multiple_values: true
     required: false
     ui_config:
@@ -1889,5 +2106,5 @@
       display: popover
     model: system__activity
     explore: user
-    listens_to_filters: [Dashboard Title, Explore, Model]
+    listens_to_filters: [Explore, Model]
     field: user.name

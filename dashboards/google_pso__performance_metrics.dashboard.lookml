@@ -3,6 +3,8 @@
   title: Google PSO - Performance Metrics
   layout: newspaper
   preferred_viewer: dashboards-next
+  crossfilter_enabled: true
+  load_configuration: wait
   description: ''
   filters_location_top: false
   preferred_slug: xoOJEz25fifqhGaa3DKk9K
@@ -29,7 +31,7 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
           __LINE_NUM: 30
       - 'No'
       _kind_hint: dimension
@@ -40,28 +42,39 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Average Async Runtime
+    conditional_formatting: [{type: greater than, value: 9.999, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}, {type: greater
+          than, value: 14.9999, background_color: "#FFFFFF", font_color: "#F54C3E",
+        
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     note_state: collapsed
     note_display: hover
-    note_text: The average amount of time a query takes to complete inclusive of pre query processing. Main query execution, totals execution and post query processing.
+    note_text: The average amount of time a query takes to complete inclusive of pre
+      query processing. Main query execution, totals execution and post query processing.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 2
-    col: 6
-    width: 6
+    row: 4
+    col: 5
+    width: 5
     height: 4
   - title: Average Query Queue Time
     name: Average Query Queue Time
@@ -85,8 +98,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 87
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 86
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -105,19 +118,29 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: The amount of time a query is queued & waiting for a free worker within Looker after initialisation. Review connections per node settings to ensure they are the maximum allowed value and review large dashboards within the instance to identify any over Lookers recommendation of 25 tiles per dashboard which are being heavily used. Restructure dashboards to reduce the number of queries generated. This metric is also improved when optimising main query execution by increasing traffic flow.
+    note_text: The amount of time a query is queued & waiting for a free worker within
+      Looker after initialisation. Review connections per node settings to ensure
+      they are the maximum allowed value and review large dashboards within the instance
+      to identify any over Lookers recommendation of 25 tiles per dashboard which
+      are being heavily used. Restructure dashboards to reduce the number of queries
+      generated. This metric is also improved when optimising main query execution
+      by increasing traffic flow.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 12
+    row: 14
     col: 8
     width: 4
     height: 4
@@ -143,8 +166,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 146
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 144
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -154,28 +177,42 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Acquire Connection Time
     comparison_label: Acquire Connection Queries
+    conditional_formatting: [{type: greater than, value: 0.2383, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: The time it takes for Looker to obtain a connection to your database. This includes time to look up the credentials (or key) for the user, create the connection pool if it does not already exist, and initialise the connection for use. The recommended benchmark is 0.2383 seconds. If this is higher or impacts a large number of queries it suggests that Looker is sending more queries than the database is capable of processing concurrently. Review the max connections per node value in your connections to optimise. This metric is also improved when reducing main query execution time.
+    note_text: The time it takes for Looker to obtain a connection to your database.
+      This includes time to look up the credentials (or key) for the user, create
+      the connection pool if it does not already exist, and initialise the connection
+      for use. The recommended benchmark is 0.2383 seconds. If this is higher or impacts
+      a large number of queries it suggests that Looker is sending more queries than
+      the database is capable of processing concurrently. Review the max connections
+      per node value in your connections to optimise. This metric is also improved
+      when reducing main query execution time.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 12
+    row: 14
     col: 0
     width: 4
     height: 4
@@ -204,8 +241,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 210
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 205
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -220,8 +257,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 226
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 221
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -240,19 +277,31 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: Looker has a default per user/per node throttler ensuring that each user can only run 15 queries per node concurrently. This ensures bandwidth is available for all users, if Per User Throttler Average is high and impacts a high number of queries, review schedules with a view to disperse them throughout the time period. Also review Large Dashboards which have over 25 tiles. Review use of merged queries also as this can see dashboards with fewer than 25 tiles generate a larger volume of queries and see slow load times. If necessary create explores which make merged queries redundant. This is also improved by optimising main query execution time.
+    note_text: Looker has a default per user/per node throttler ensuring that each
+      user can only run 15 queries per node concurrently. This ensures bandwidth is
+      available for all users, if Per User Throttler Average is high and impacts a
+      high number of queries, review schedules with a view to disperse them throughout
+      the time period. Also review Large Dashboards which have over 25 tiles. Review
+      use of merged queries also as this can see dashboards with fewer than 25 tiles
+      generate a larger volume of queries and see slow load times. If necessary create
+      explores which make merged queries redundant. This is also improved by optimising
+      main query execution time.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 12
+    row: 14
     col: 4
     width: 4
     height: 4
@@ -262,8 +311,6 @@
     explore: query_metrics
     type: single_value
     fields: [history.query_run_count_drill, history.database_result_query_count]
-    filters:
-      is_async_runtime_value_populated: 'Yes'
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -278,8 +325,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 289
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 279
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -294,11 +341,19 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 305
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 295
       - 'No'
       _kind_hint: dimension
       _type_hint: string
+    - category: table_calculation
+      expression: 1-(${history.database_result_query_count}/${history.query_run_count_drill})
+      label: Cache Percent
+      value_format:
+      value_format_name: percent_2
+      _kind_hint: measure
+      table_calculation: cache_percent
+      _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
     show_comparison: true
@@ -309,26 +364,35 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Total Query Count
-    comparison_label: Queries From BigQuery
+    comparison_label: Queries From Database
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: The number of queries executed within the time period and total number of queries executed directly against the database. Review datagroup policies if the number of cached queries is unexpectedly high. Expected cache/database query ratio can vary depending on your use cases, e.g. if queries are usually run filtered at id level it would be low vs if few filters are used on dashboards with high usage where it should be high.
+    note_text: The number of queries executed within the time period and total number
+      of queries executed directly against the database. Review datagroup policies
+      if the number of cached queries is unexpectedly high. Expected cache/database
+      query ratio can vary depending on your use cases, e.g. if queries are usually
+      run filtered at id level it would be low vs if few filters are used on dashboards
+      with high usage where it should be high.
+    hidden_fields: [cache_percent]
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 2
-    col: 18
-    width: 6
+    row: 4
+    col: 15
+    width: 5
     height: 4
   - title: Explore Init
     name: Explore Init
@@ -352,8 +416,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 366
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 353
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -368,8 +432,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 382
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 369
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -379,28 +443,40 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: 'Explore Init: Compute'
     comparison_label: Explore Init Queries
+    conditional_formatting: [{type: greater than, value: 0.2333, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: This is the average time taken to initialise your explores from code. The recommended benchmark for this metric is 0.2333 This should only impact a small portion of your queries. If high, review explores for optimisation either through restructure or efficiency of joins, removal of unnecessary dimensions and measures and review of developer deployment frequency as frequent deployments of Lookml code at peak usage invalidates cache.
+    note_text: This is the average time taken to initialise your explores from code.
+      The recommended benchmark for this metric is 0.2333 This should only impact
+      a small portion of your queries. If high, review explores for optimisation either
+      through restructure or efficiency of joins, removal of unnecessary dimensions
+      and measures and review of developer deployment frequency as frequent deployments
+      of Lookml code at peak usage invalidates cache.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 7
+    row: 9
     col: 12
     width: 4
     height: 4
@@ -426,8 +502,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 442
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 427
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -442,8 +518,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 458
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 443
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -453,28 +529,40 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: 'Model Init: Compute'
     comparison_label: Model Init Queries
+    conditional_formatting: [{type: greater than, value: 2.4399, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: This is the average time taken to initialise your models from code. The recommended benchmark for this metric is 2.4199. This should only impact a small portion of your queries. If the average time is high then performance may benefit from models being broken out into smaller components. If the number of queries impacted is high, review the frequency of deployments and review potential implementation of deployment windows.
+    note_text: This is the average time taken to initialise your models from code.
+      The recommended benchmark for this metric is 2.4199. This should only impact
+      a small portion of your queries. If the average time is high then performance
+      may benefit from models being broken out into smaller components. If the number
+      of queries impacted is high, review the frequency of deployments and review
+      potential implementation of deployment windows.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 7
+    row: 9
     col: 4
     width: 4
     height: 4
@@ -500,8 +588,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 518
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 501
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -516,8 +604,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 534
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 517
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -527,28 +615,40 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Prepare Average
     comparison_label: Prepare Queries
+    conditional_formatting: [{type: greater than, value: 0.4389, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: The amount of time Looker takes to prepare a SQL query based Lookml defined in your projects. The recommended benchmark for this metric is 0.4389 seconds. If this appears to be excessively high, review Lookml logic, consider persistent derived tables or migrating calculations back to the database. Move custom dimensions and measures into your Lookml model where possible. Also enable new Lookml runtime if not already done so.
+    note_text: The amount of time Looker takes to prepare a SQL query based Lookml
+      defined in your projects. The recommended benchmark for this metric is 0.4389
+      seconds. If this appears to be excessively high, review Lookml logic, consider
+      persistent derived tables or migrating calculations back to the database. Move
+      custom dimensions and measures into your Lookml model where possible. Also enable
+      new Lookml runtime if not already done so.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 7
+    row: 9
     col: 20
     width: 4
     height: 4
@@ -574,8 +674,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 596
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 575
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -590,8 +690,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 612
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 591
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -601,30 +701,44 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Main Query Execution Time
     comparison_label: 'Model Init: From Cache'
+    conditional_formatting: [{type: greater than, value: 4.9999, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}, {type: greater
+          than, value: !!null '', background_color: "#FFFFFF", font_color: "#F54C3E",
+        
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: The amount of time the main query takes to complete within the database. The recommended benchmark is 4.8698 seconds. This figure can be optimised through aggregation of data, the review of SQL queries to remove inefficiencies such as unnecessary sub queries, inclusion of templated filters in derived tables and standard database optimization techniques such as indexing, partitioning.
+    note_text: The amount of time the main query takes to complete within the database.
+      The recommended benchmark is 4.8698 seconds. This figure can be optimised through
+      aggregation of data, the review of SQL queries to remove inefficiencies such
+      as unnecessary sub queries, inclusion of templated filters in derived tables
+      and standard database optimization techniques such as indexing, partitioning.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 2
-    col: 12
-    width: 6
+    row: 4
+    col: 10
+    width: 5
     height: 4
   - title: Stream To Cache Time
     name: Stream To Cache Time
@@ -648,8 +762,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 673
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 649
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -664,8 +778,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 689
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 665
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -675,30 +789,45 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Post Processing - Stream to Cache Time
     comparison_label: Stream To Cache Queries
+    conditional_formatting: [{type: greater than, value: 0.2234, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: This is the amount of time taken to format and stream results to the user browser cache and should be present in most queries. The recommended benchmark is 0.2234s. If higher, review the number of custom dimensions and measures & table calculations, use of pivots, use of merged queries and row limits within high throughput dashboards. Identify if custom dimensions and measures can be moved back into your Lookml model, if pivots are optimised to include only necessary information. Can merged queries be removed via creation of new explores and that row limits are in line with requirements. For example if using a single value visualisation. Ensure that you are not querying with a limit to 5000 rows.
+    note_text: This is the amount of time taken to format and stream results to the
+      user browser cache and should be present in most queries. The recommended benchmark
+      is 0.2234s. If higher, review the number of custom dimensions and measures &
+      table calculations, use of pivots, use of merged queries and row limits within
+      high throughput dashboards. Identify if custom dimensions and measures can be
+      moved back into your Lookml model, if pivots are optimised to include only necessary
+      information. Can merged queries be removed via creation of new explores and
+      that row limits are in line with requirements. For example if using a single
+      value visualisation. Ensure that you are not querying with a limit to 5000 rows.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 16
+    row: 23
     col: 0
-    width: 24
+    width: 12
     height: 4
   - title: Was Per User Throttler Applied
     name: Was Per User Throttler Applied
@@ -723,8 +852,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 751
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 724
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -739,8 +868,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 767
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 740
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -763,20 +892,24 @@
     note_display: hover
     note_text: 'The number of queries to which Per user throttling was applied. '
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 30
+    row: 51
     col: 0
-    width: 6
-    height: 8
+    width: 8
+    height: 13
   - title: Project Init
     name: Project Init
     model: system__activity
@@ -799,8 +932,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 827
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 800
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -815,8 +948,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 843
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 816
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -844,11 +977,14 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Average Project Init
     comparison_label: Project Init Queries
+    conditional_formatting: [{type: greater than, value: 0.1, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -867,167 +1003,34 @@
     label_type: labPer
     note_state: collapsed
     note_display: hover
-    note_text: The amount of time taken to initialise your project, This should be under 0.0 seconds (e.g. 0.09). If higher it may be valuable to consider breaking the project out into smaller components in a Hub and Spoke model
+    note_text: The amount of time taken to initialise your project, This should be
+      under 0.0 seconds (e.g. 0.09). If higher it may be valuable to consider breaking
+      the project out into smaller components in a Hub and Spoke model
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 7
+    row: 9
     col: 0
     width: 4
     height: 4
-  - title: Looker System Activity Warnings
-    name: Looker System Activity Warnings
-    model: system__activity
-    explore: query_metrics
-    type: table
-    fields: [query_metrics.combo_warning, query_metrics.sorted_warnings, query_metrics.combo_recommendations,
-      query_metrics.acquire_connection_recommendation, query_metrics.acquire_connection_warning,
-      query_metrics.execute_main_query_recommendation, query_metrics.execute_main_query_warning,
-      query_metrics.explore_init_recommendation, query_metrics.explore_init_warning,
-      query_metrics.marshalled_cache_load_recommendation, query_metrics.marshalled_cache_load_warning,
-      query_metrics.model_init_computed_recommendation, query_metrics.model_init_computed_warning,
-      query_metrics.postprocessing_or_stream_to_cache_recommendation, query_metrics.postprocessing_warning,
-      query_metrics.prepare_recommendation, query_metrics.prepare_warning, query_metrics.stream_to_cache_warning,
-      history.query_run_count_drill]
-    filters:
-      is_async_runtime_value_populated: 'Yes'
-    limit: 5000
-    column_limit: 50
-    dynamic_fields:
-    - category: dimension
-      description: ''
-      label: Is Async Runtime Value Populated
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: is_async_runtime_value_populated
-      args:
-      - query_metrics.async_processing
-      - - label: 'Yes'
-          filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 959
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
-      description: ''
-      label: Was Per User Throttling applied (Yes/No)
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: was_per_user_throttling_applied_yesno
-      args:
-      - query_metrics.per_user_throttler
-      - - label: 'Yes'
-          filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 975
-      - 'No'
-      _kind_hint: dimension
-      _type_hint: string
-    - category: dimension
-      expression: "${query_metrics.project_init}"
-      label: project init
-      value_format:
-      value_format_name:
-      dimension: project_init
-      _kind_hint: dimension
-      _type_hint: number
-    - category: measure
-      expression: ''
-      label: Average of project init
-      value_format:
-      value_format_name: decimal_2
-      based_on: project_init
-      _kind_hint: measure
-      measure: average_of_project_init
-      type: average
-      _type_hint: number
-    show_view_names: false
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: white
-    limit_displayed_rows: false
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    custom_color_enabled: true
-    show_single_value_title: true
-    single_value_title: Average Project Init
-    show_comparison: false
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    comparison_label: 'Model Init: From Cache'
-    transpose: false
-    truncate_text: true
-    size_to_fit: true
-    header_text_alignment: left
-    header_font_size: 12
-    rows_font_size: 12
-    defaults_version: 1
-    hidden_pivots: {}
-    value_labels: legend
-    label_type: labPer
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    show_null_points: true
-    interpolation: linear
-    listen:
-      Date: history.created_date
-      Workspace ID: history.workspace_id
-      Result Source: history.result_source
-      Model: query.model
-      Explore: query.view
-      User: user.name
-      Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 73
-    col: 0
-    width: 24
-    height: 10
   - title: Looker Overhead
     name: Looker Overhead
     model: system__activity
     explore: query_metrics
     type: single_value
-    fields: [average_of_execute_main_query, average_of_async_processing]
+    fields: [average_of_execute_main_query, average_of_async_processing, average_of_acquire_connection]
     limit: 5000
     column_limit: 50
     dynamic_fields:
@@ -1042,8 +1045,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1104
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1043
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1058,8 +1061,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1120
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1059
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1137,8 +1140,8 @@
       - query_metrics.execute_main_query
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1215
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1138
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1163,7 +1166,7 @@
       filters:
         is_async_runtime_value_populated: 'Yes'
     - category: table_calculation
-      expression: "((${average_of_execute_main_query}/${average_of_async_processing})-1)*(-1)"
+      expression: "(((${average_of_execute_main_query}+${average_of_acquire_connection})/${average_of_async_processing})-1)*(-1)"
       label: Looker Overhead
       value_format:
       value_format_name: percent_2
@@ -1171,12 +1174,19 @@
       table_calculation: looker_overhead_2
       _type_hint: number
     - category: table_calculation
-      expression: "${average_of_async_processing}-${average_of_execute_main_query}"
+      expression: "${average_of_async_processing}-(${average_of_execute_main_query}+${average_of_acquire_connection})"
       label: Overhead Time
       value_format:
       value_format_name: decimal_2
       _kind_hint: measure
       table_calculation: overhead_time
+      _type_hint: number
+    - measure: average_of_acquire_connection
+      based_on: query_metrics.acquire_connection
+      expression: ''
+      label: Average of Acquire Connection
+      type: average
+      _kind_hint: measure
       _type_hint: number
     custom_color_enabled: true
     show_single_value_title: true
@@ -1233,32 +1243,38 @@
     show_null_points: true
     interpolation: linear
     truncate_column_names: false
-    hidden_fields: [average_of_execute_main_query, average_of_async_processing]
+    hidden_fields: [average_of_execute_main_query, average_of_async_processing, average_of_acquire_connection]
     note_state: collapsed
     note_display: hover
-    note_text: The amount of time a query spends being processed exclusively within Looker. This captures the percentage or pre & post processing as a total of the overall query run time.
+    note_text: "The amount of time a query spends being processed exclusively within\
+      \ Looker. This captures the percentage or pre & post processing as a total of\
+      \ the overall query run time. \nFormula: Async Runtime - (Main query execution\
+      \ + Acquire Connection time) "
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 2
+    row: 4
     col: 0
-    width: 6
+    width: 5
     height: 4
-  - title: Looker Overhead By Model
-    name: Looker Overhead By Model
+  - title: Processing By Model
+    name: Processing By Model
     model: system__activity
     explore: query_metrics
     type: looker_bar
-    fields: [query.model, history.query_run_count_drill, average_of_async_processing,
-      average_of_execute_main_query]
+    fields: [query.model, history.query_run_count_drill, average_of_async_processing]
     filters:
       query.model: "-NULL"
     sorts: [history.query_run_count_drill desc]
@@ -1276,8 +1292,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1357
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1277
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1292,8 +1308,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1373
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1293
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1357,6 +1373,7 @@
       _kind_hint: measure
       table_calculation: looker_overhead_1
       _type_hint: number
+      is_disabled: true
     - category: measure
       expression: ''
       label: Average of Async Processing
@@ -1448,28 +1465,31 @@
     show_null_points: true
     interpolation: linear
     truncate_column_names: false
-    hidden_fields: [average_of_async_processing, average_of_execute_main_query]
+    hidden_fields:
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 51
-    col: 0
+    row: 67
+    col: 12
     width: 12
     height: 11
-  - title: Looker Overhead By Dashboard
-    name: Looker Overhead By Dashboard
+  - title: Processing By Dashboard
+    name: Processing By Dashboard
     model: system__activity
     explore: query_metrics
     type: looker_bar
-    fields: [history.query_run_count_drill, dashboard.title, average_of_async_processing,
-      average_of_execute_main_query]
+    fields: [history.query_run_count_drill, dashboard.title, average_of_async_processing]
     filters:
       dashboard.title: "-NULL"
     sorts: [history.query_run_count_drill desc]
@@ -1487,8 +1507,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1584
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1488
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1503,8 +1523,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1600
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1504
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1568,6 +1588,7 @@
       _kind_hint: measure
       table_calculation: looker_overhead_1
       _type_hint: number
+      is_disabled: true
     - category: measure
       expression: ''
       label: Average of Async Processing
@@ -1651,28 +1672,31 @@
     show_null_points: true
     interpolation: linear
     truncate_column_names: false
-    hidden_fields: [average_of_execute_main_query, average_of_async_processing]
+    hidden_fields:
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dialect: history.dialect
-      Source: history.source
-    row: 62
-    col: 0
+    row: 78
+    col: 12
     width: 12
     height: 11
-  - title: Looker Overhead By Explore
-    name: Looker Overhead By Explore
+  - title: Processing By Explore
+    name: Processing By Explore
     model: system__activity
     explore: query_metrics
     type: looker_bar
-    fields: [query.view, history.query_run_count_drill, average_of_execute_main_query,
-      average_of_async_processing]
+    fields: [query.view, history.query_run_count_drill, average_of_execute_main_query]
     filters:
       query.view: "-NULL"
     sorts: [history.query_run_count_drill desc]
@@ -1688,6 +1712,7 @@
       _kind_hint: measure
       table_calculation: looker_overhead_1
       _type_hint: number
+      is_disabled: true
     - category: dimension
       description: ''
       label: Is Async Runtime Value Populated
@@ -1699,8 +1724,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1812
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1700
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1715,8 +1740,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 1828
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1716
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1854,81 +1879,33 @@
     show_null_points: true
     interpolation: linear
     truncate_column_names: false
-    hidden_fields: [average_of_execute_main_query, average_of_async_processing]
+    hidden_fields:
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 51
-    col: 12
+    row: 78
+    col: 0
     width: 12
     height: 11
-  - title: Queries By Source
-    name: Queries By Source
-    model: system__activity
-    explore: history
-    type: looker_pie
-    fields: [history.query_run_count, history.source]
-    sorts: [history.query_run_count desc]
-    limit: 500
-    column_limit: 50
-    value_labels: legend
-    label_type: labPer
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    listen:
-      Workspace ID: history.workspace_id
-      Date: history.created_date
-      Result Source: history.result_source
-      Model: query.model
-      Explore: query.view
-      User: user.name
-      Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-    row: 30
-    col: 6
-    width: 6
-    height: 8
-  - title: Looker Overhead By User
-    name: Looker Overhead By User
+  - title: Processing By User
+    name: Processing By User
     model: system__activity
     explore: query_metrics
     type: looker_bar
-    fields: [history.query_run_count_drill, user.name, average_of_execute_main_query,
-      average_of_async_processing]
+    fields: [history.query_run_count_drill, user.name, average_of_async_processing]
+    filters:
+      user.name: "-NULL"
     sorts: [history.query_run_count_drill desc]
     limit: 15
     column_limit: 50
@@ -1944,8 +1921,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2073
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1945
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -1960,8 +1937,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2089
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1961
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2025,6 +2002,7 @@
       _kind_hint: measure
       table_calculation: looker_overhead_1
       _type_hint: number
+      is_disabled: true
     - category: measure
       expression: ''
       label: Average of Execute Main Query
@@ -2108,20 +2086,23 @@
     show_null_points: true
     interpolation: linear
     truncate_column_names: false
-    hidden_fields: [average_of_execute_main_query, average_of_async_processing]
+    hidden_fields:
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
-      User: user.name
-      Status: history.status
-      Dashboard: dashboard.title
       Dialect: history.dialect
-      Source: history.source
-    row: 62
-    col: 12
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      Status: history.status
+    row: 89
+    col: 0
     width: 12
     height: 11
   - title: Model Init (Copy)
@@ -2146,8 +2127,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2291
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2147
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2162,8 +2143,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2307
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2163
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2173,28 +2154,38 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: 'Model Init: Cache'
     comparison_label: Model Init Queries
+    conditional_formatting: [{type: greater than, value: 1, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: This is the average time taken to validate your model from cache. This should impact a large proportion of your queries and execute faster than init from compute, returning in under a second. If the average time is high then performance may benefit from models being broken out into smaller components.
+    note_text: This is the average time taken to validate your model from cache. This
+      should impact a large proportion of your queries and execute faster than init
+      from compute, returning in under a second. If the average time is high then
+      performance may benefit from models being broken out into smaller components.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 7
+    row: 9
     col: 8
     width: 4
     height: 4
@@ -2220,8 +2211,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2366
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2221
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2236,8 +2227,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2382
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2237
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2247,33 +2238,44 @@
     comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
-    enable_conditional_formatting: false
+    enable_conditional_formatting: true
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: 'Explore Init: Cache'
     comparison_label: Explore Init Queries
+    conditional_formatting: [{type: greater than, value: 0.3513, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: This is the average time taken to validate explore code from cache. The recommended benchmark for this metric is 0.3513. This metric should cover a larger proportion of queries. If higher, review explores for optimisation either through restructure or efficiency of joins as well as moving custom dimensions and measures to LookML.
+    note_text: This is the average time taken to validate explore code from cache.
+      The recommended benchmark for this metric is 0.3513. This metric should cover
+      a larger proportion of queries. If higher, review explores for optimisation
+      either through restructure or efficiency of joins as well as moving custom dimensions
+      and measures to LookML.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 7
+    row: 9
     col: 16
     width: 4
     height: 4
-  - title: Overhead & Query Count per Weekday
-    name: Overhead & Query Count per Weekday
+  - title: Async Runtime & Query Count per Weekday
+    name: Async Runtime & Query Count per Weekday
     model: system__activity
     explore: query_metrics
     type: looker_line
@@ -2296,8 +2298,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2442
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2297
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2312,8 +2314,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2458
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2313
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2391,8 +2393,8 @@
       - query_metrics.execute_main_query
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2553
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2392
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2424,6 +2426,7 @@
       _kind_hint: measure
       table_calculation: looker_overhead_2
       _type_hint: number
+      is_disabled: true
     - category: table_calculation
       expression: "${average_of_async_processing}-${average_of_execute_main_query}"
       label: Overhead Time
@@ -2460,9 +2463,10 @@
     y_axes: [{label: '', orientation: left, series: [{axisId: history.query_run_count_drill,
             id: history.query_run_count_drill, name: Query Run Count}], showLabels: true,
         showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
-        type: linear}, {label: !!null '', orientation: right, series: [{axisId: looker_overhead_2,
-            id: looker_overhead_2, name: Looker Overhead}], showLabels: true, showValues: true,
-        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+        type: linear}, {label: '', orientation: right, series: [{axisId: average_of_async_processing,
+            id: average_of_async_processing, name: Average of Async Processing}],
+        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
+        type: linear}]
     x_axis_zoom: true
     y_axis_zoom: true
     custom_color_enabled: true
@@ -2496,95 +2500,26 @@
     show_silhouette: false
     totals_color: "#808080"
     truncate_column_names: false
-    hidden_fields: [average_of_execute_main_query, average_of_async_processing]
+    hidden_fields: [average_of_execute_main_query]
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 20
+    row: 30
     col: 0
     width: 24
     height: 9
-  - title: Queries By User
-    name: Queries By User
-    model: system__activity
-    explore: history
-    type: looker_pie
-    fields: [history.query_run_count, user.name]
-    filters: {}
-    sorts: [history.query_run_count desc]
-    limit: 50
-    column_limit: 50
-    dynamic_fields:
-    - args:
-      - history.query_run_count
-      calculation_type: rank_of_column
-      category: table_calculation
-      based_on: history.query_run_count
-      label: Rank of History Query Run Count
-      source_field: history.query_run_count
-      table_calculation: rank_of_history_query_run_count
-      value_format:
-      value_format_name:
-      _kind_hint: measure
-      _type_hint: number
-      is_disabled: true
-    value_labels: legend
-    label_type: labPer
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    hidden_pivots: {}
-    note_state: collapsed
-    note_display: hover
-    note_text: 'The top 20 overall users as a segment of total usage. '
-    listen:
-      Workspace ID: history.workspace_id
-      Date: history.created_date
-      Result Source: history.result_source
-      Model: query.model
-      Explore: query.view
-      User: user.name
-      Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 30
-    col: 12
-    width: 6
-    height: 8
   - title: Grand Total Queries
     name: Grand Total Queries
     model: system__activity
@@ -2607,8 +2542,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2820
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2608
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2623,8 +2558,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2836
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2624
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2657,19 +2592,26 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: Looker executes grand totals queries separately to main query execution. Grand Totals (The sum of subtotals) should not be applied to all queries. If query totals are running against a large volume of queries and adding significantly to run time, review that all totals necessary for dashboards with high throughput.
+    note_text: Looker executes grand totals queries separately to main query execution.
+      Grand Totals (The sum of subtotals) should not be applied to all queries. If
+      query totals are running against a large volume of queries and adding significantly
+      to run time, review that all totals necessary for dashboards with high throughput.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 12
+    row: 14
     col: 20
     width: 4
     height: 4
@@ -2677,7 +2619,7 @@
     type: text
     title_text: Initialisation Phase
     body_text: ''
-    row: 6
+    row: 8
     col: 0
     width: 24
     height: 1
@@ -2703,8 +2645,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2919
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2704
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2719,8 +2661,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 2935
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2720
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2746,19 +2688,26 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: Looker executes totals queries separately to main query execution. Totals should not be applied to all queries. If query totals are running against a large volume of queries and adding significantly to run time, review that all totals are necessary for dashboards with high throughput
+    note_text: Looker executes totals queries separately to main query execution.
+      Totals should not be applied to all queries. If query totals are running against
+      a large volume of queries and adding significantly to run time, review that
+      all totals are necessary for dashboards with high throughput
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 12
+    row: 14
     col: 12
     width: 4
     height: 4
@@ -2766,7 +2715,7 @@
     type: text
     title_text: Query Execution Phase
     body_text: ''
-    row: 11
+    row: 13
     col: 0
     width: 24
     height: 1
@@ -2792,8 +2741,8 @@
       - query_metrics.async_processing
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3010
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2793
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2808,8 +2757,8 @@
       - query_metrics.per_user_throttler
       - - label: 'Yes'
           filter: ">0"
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3026
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 2809
       - 'No'
       _kind_hint: dimension
       _type_hint: string
@@ -2835,258 +2784,1418 @@
     hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: Looker executes row totals queries separately to main query execution. Row totals should not be applied to all queries. If query totals are running against a large volume of queries and adding significantly to run time, review that totals are necessary for dashboards with high throughput.
+    note_text: Looker executes row totals queries separately to main query execution.
+      Row totals should not be applied to all queries. If query totals are running
+      against a large volume of queries and adding significantly to run time, review
+      that totals are necessary for dashboards with high throughput.
     listen:
-      Date: history.created_date
       Workspace ID: history.workspace_id
-      Result Source: history.result_source
+      Source: history.source
+      Date: history.created_date
       Model: query.model
       Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
       User: user.name
       Status: history.status
-      Dashboard: dashboard.title
-      Dialect: history.dialect
-      Source: history.source
-    row: 12
+    row: 14
     col: 16
     width: 4
     height: 4
-  - name: Queries by Source
+  - name: Query Overview
     type: text
-    title_text: Queries by Source
+    title_text: Query Overview
+    subtitle_text: ''
     body_text: ''
-    row: 29
+    row: 48
     col: 0
     width: 24
-    height: 1
+    height: 3
   - name: ''
     type: text
     title_text: ''
+    subtitle_text: ''
     body_text: |-
       <nav style="font-size: 18px; padding: 5px 10px 0 10px; height: 60px">
-      <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__performance_metrics">
+      <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__performance_metrics?">
       Performance Metrics</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers">Outliers</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis">History</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery">Schedules</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries">Merged Queries</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count">Large Dashboards</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_">Dashboard Optimisation</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers?">Outliers</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis?">History</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery?">Schedules</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries?">Merged Queries</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count?">Large Dashboards</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_?">Dashboard Optimisation</a>
       </nav>
     row: 0
     col: 0
     width: 24
     height: 2
-  - title: Queries By Status
-    name: Queries By Status
+  - name: " (2)"
+    type: text
+    title_text: ''
+    subtitle_text: Source Drilldown
+    body_text: ''
+    row: 64
+    col: 0
+    width: 24
+    height: 3
+  - title: Query Metrics Per Day
+    name: Query Metrics Per Day
     model: system__activity
-    explore: history
-    type: looker_pie
-    fields: [history.query_run_count, history.status]
-    sorts: [history.query_run_count desc]
+    explore: query_metrics
+    type: looker_area
+    fields: [history.created_date, query_metrics.acquire_connection_average, query_metrics.per_user_throttler_average,
+      query_metrics.prepare_average, query_metrics.model_init_cache_average, query_metrics.model_init_computed_average,
+      query_metrics.marshalled_cache_load_average, query_metrics.explore_init_average,
+      query_metrics.execute_main_query_average, query_metrics.postprocessing_average,
+      query_metrics.stream_to_cache_average, query_metrics.cache_load_average, query_metrics.load_main_query_in_memory_average,
+      query_metrics.load_process_and_stream_main_query_average, query_metrics.queued_average]
+    filters:
+      history.created_day_of_week: "-Saturday,-Sunday"
+    sorts: [history.created_date desc]
+    limit: 5000
+    column_limit: 50
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: false
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: linear
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: Seconds, orientation: left, series: [{axisId: query_metrics.acquire_connection_average,
+            id: query_metrics.acquire_connection_average, name: Acquire Connection
+              Average}, {axisId: query_metrics.connection_held_average, id: query_metrics.connection_held_average,
+            name: Connection Held Average}, {axisId: query_metrics.per_user_throttler_average,
+            id: query_metrics.per_user_throttler_average, name: Per User Throttler
+              Average}, {axisId: query_metrics.prepare_average, id: query_metrics.prepare_average,
+            name: Prepare Average}, {axisId: query_metrics.model_init_cache_average,
+            id: query_metrics.model_init_cache_average, name: 'Model Init: From Cache
+              Average'}, {axisId: query_metrics.model_init_computed_average, id: query_metrics.model_init_computed_average,
+            name: 'Model Init: Computed Average'}, {axisId: query_metrics.marshalled_cache_load_average,
+            id: query_metrics.marshalled_cache_load_average, name: 'Explore Init:
+              From Cache Average'}, {axisId: query_metrics.explore_init_average, id: query_metrics.explore_init_average,
+            name: 'Explore Init: Computed Average'}, {axisId: query_metrics.execute_main_query_average,
+            id: query_metrics.execute_main_query_average, name: Execute Main Query
+              Average}, {axisId: query_metrics.postprocessing_average, id: query_metrics.postprocessing_average,
+            name: Postprocessing Average}, {axisId: query_metrics.stream_to_cache_average,
+            id: query_metrics.stream_to_cache_average, name: Stream to Cache Average}],
+        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
+        type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: false
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Indicative Looker Overhead
+    comparison_label: Overhead Time
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    header_text_alignment: left
+    header_font_size: 12
+    rows_font_size: 12
+    defaults_version: 1
+    hidden_pivots: {}
+    value_labels: legend
+    label_type: labPer
+    ordering: none
+    show_null_labels: false
+    truncate_column_names: false
+    hidden_fields: []
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 39
+    col: 0
+    width: 24
+    height: 9
+  - title: Processing By Connection
+    name: Processing By Connection
+    model: system__activity
+    explore: query_metrics
+    type: looker_bar
+    fields: [history.query_run_count_drill, average_of_async_processing, history.connection_name]
+    filters:
+      history.connection_name: "-NULL"
+    sorts: [history.query_run_count_drill desc]
+    limit: 15
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1945
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      description: ''
+      label: Was Per User Throttling applied (Yes/No)
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: was_per_user_throttling_applied_yesno
+      args:
+      - query_metrics.per_user_throttler
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1961
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      expression: "${query_metrics.project_init}"
+      label: project init
+      value_format:
+      value_format_name:
+      dimension: project_init
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: Average of project init
+      value_format:
+      value_format_name: decimal_2
+      based_on: project_init
+      _kind_hint: measure
+      measure: average_of_project_init
+      type: average
+      _type_hint: number
+    - category: dimension
+      expression: "${query_metrics.async_processing}-${query_metrics.execute_main_query}"
+      label: Looker Processing Time
+      value_format:
+      value_format_name:
+      dimension: looker_processing_time
+      _kind_hint: dimension
+      _type_hint: number
+    - category: dimension
+      expression: "${looker_processing_time}/${query_metrics.async_processing}"
+      label: Looker Overhead
+      value_format:
+      value_format_name:
+      dimension: looker_overhead
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: Average of Looker Overhead
+      value_format:
+      value_format_name: percent_2
+      based_on: looker_overhead
+      _kind_hint: measure
+      measure: average_of_looker_overhead
+      type: average
+      _type_hint: number
+    - measure: average_of_looker_processing_time
+      based_on: looker_processing_time
+      expression: ''
+      label: Average of Looker Processing Time
+      type: average
+      _kind_hint: measure
+      _type_hint: number
+    - category: table_calculation
+      expression: if((${average_of_async_processing}-${average_of_execute_main_query})/${average_of_async_processing}
+        >0,(${average_of_async_processing}-${average_of_execute_main_query})/${average_of_async_processing},0)
+      label: Looker Overhead
+      value_format:
+      value_format_name: percent_2
+      _kind_hint: measure
+      table_calculation: looker_overhead_1
+      _type_hint: number
+      is_disabled: true
+    - category: measure
+      expression: ''
+      label: Average of Execute Main Query
+      based_on: query_metrics.execute_main_query
+      _kind_hint: measure
+      measure: average_of_execute_main_query
+      type: average
+      _type_hint: number
+      filters:
+        query_metrics.execute_main_query: not null
+    - category: measure
+      expression: ''
+      label: Average of Async Processing
+      based_on: query_metrics.async_processing
+      _kind_hint: measure
+      measure: average_of_async_processing
+      type: average
+      _type_hint: number
+      filters:
+        query_metrics.async_processing: not null
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: !!null '', orientation: top, series: [{axisId: history.query_run_count_drill,
+            id: history.query_run_count_drill, name: Query Run Count}], showLabels: true,
+        showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
+        type: linear}, {label: '', orientation: bottom, series: [{axisId: looker_overhead_1,
+            id: looker_overhead_1, name: Looker Overhead}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Indicative Looker Overhead
+    comparison_label: 'Model Init: From Cache'
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    header_text_alignment: left
+    header_font_size: 12
+    rows_font_size: 12
+    defaults_version: 1
+    hidden_pivots: {}
+    value_labels: legend
+    label_type: labPer
+    show_null_points: true
+    interpolation: linear
+    truncate_column_names: false
+    hidden_fields:
+    listen:
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 67
+    col: 0
+    width: 12
+    height: 11
+  - title: Processing By Errors
+    name: Processing By Errors
+    model: system__activity
+    explore: query_metrics
+    type: looker_bar
+    fields: [history.query_run_count_drill, average_of_async_processing, history.message]
+    filters:
+      history.message: "-NULL"
+      history.status: error
+    sorts: [history.query_run_count_drill desc]
+    limit: 15
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1945
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      description: ''
+      label: Was Per User Throttling applied (Yes/No)
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: was_per_user_throttling_applied_yesno
+      args:
+      - query_metrics.per_user_throttler
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 1961
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      expression: "${query_metrics.project_init}"
+      label: project init
+      value_format:
+      value_format_name:
+      dimension: project_init
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: Average of project init
+      value_format:
+      value_format_name: decimal_2
+      based_on: project_init
+      _kind_hint: measure
+      measure: average_of_project_init
+      type: average
+      _type_hint: number
+    - category: dimension
+      expression: "${query_metrics.async_processing}-${query_metrics.execute_main_query}"
+      label: Looker Processing Time
+      value_format:
+      value_format_name:
+      dimension: looker_processing_time
+      _kind_hint: dimension
+      _type_hint: number
+    - category: dimension
+      expression: "${looker_processing_time}/${query_metrics.async_processing}"
+      label: Looker Overhead
+      value_format:
+      value_format_name:
+      dimension: looker_overhead
+      _kind_hint: dimension
+      _type_hint: number
+    - category: measure
+      expression: ''
+      label: Average of Looker Overhead
+      value_format:
+      value_format_name: percent_2
+      based_on: looker_overhead
+      _kind_hint: measure
+      measure: average_of_looker_overhead
+      type: average
+      _type_hint: number
+    - measure: average_of_looker_processing_time
+      based_on: looker_processing_time
+      expression: ''
+      label: Average of Looker Processing Time
+      type: average
+      _kind_hint: measure
+      _type_hint: number
+    - category: table_calculation
+      expression: if((${average_of_async_processing}-${average_of_execute_main_query})/${average_of_async_processing}
+        >0,(${average_of_async_processing}-${average_of_execute_main_query})/${average_of_async_processing},0)
+      label: Looker Overhead
+      value_format:
+      value_format_name: percent_2
+      _kind_hint: measure
+      table_calculation: looker_overhead_1
+      _type_hint: number
+      is_disabled: true
+    - category: measure
+      expression: ''
+      label: Average of Execute Main Query
+      based_on: query_metrics.execute_main_query
+      _kind_hint: measure
+      measure: average_of_execute_main_query
+      type: average
+      _type_hint: number
+      filters:
+        query_metrics.execute_main_query: not null
+    - category: measure
+      expression: ''
+      label: Average of Async Processing
+      based_on: query_metrics.async_processing
+      _kind_hint: measure
+      measure: average_of_async_processing
+      type: average
+      _type_hint: number
+      filters:
+        query_metrics.async_processing: not null
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    y_axes: [{label: !!null '', orientation: top, series: [{axisId: history.query_run_count_drill,
+            id: history.query_run_count_drill, name: Query Run Count}], showLabels: true,
+        showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
+        type: linear}, {label: '', orientation: bottom, series: [{axisId: looker_overhead_1,
+            id: looker_overhead_1, name: Looker Overhead}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    x_axis_zoom: true
+    y_axis_zoom: true
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Indicative Looker Overhead
+    comparison_label: 'Model Init: From Cache'
+    show_row_numbers: true
+    transpose: false
+    truncate_text: true
+    hide_totals: false
+    hide_row_totals: false
+    size_to_fit: true
+    table_theme: white
+    header_text_alignment: left
+    header_font_size: 12
+    rows_font_size: 12
+    defaults_version: 1
+    hidden_pivots: {}
+    value_labels: legend
+    label_type: labPer
+    show_null_points: true
+    interpolation: linear
+    truncate_column_names: false
+    hidden_fields:
+    listen:
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+    row: 89
+    col: 12
+    width: 12
+    height: 11
+  - title: Cache Percentage
+    name: Cache Percentage
+    model: system__activity
+    explore: query_metrics
+    type: single_value
+    fields: [history.query_run_count_drill, history.database_result_query_count]
+    filters:
+      history.result_source: ''
     limit: 500
     column_limit: 50
     dynamic_fields:
     - category: dimension
       description: ''
-      label: Queries by User
+      label: Is Async Runtime Value Populated
       value_format:
       value_format_name:
       calculation_type: group_by
-      dimension: queries_by_user
+      dimension: is_async_runtime_value_populated
       args:
-      - user.name
-      - - label: Looker Delivery
-          filter: Looker Delivery
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3119
-        - label: Salesforce Integration
-          filter: Salesforce Integration
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3123
-        - label: Looker Operation
-          filter: Looker Operation
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3127
-      - Everyone Else
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 279
+      - 'No'
       _kind_hint: dimension
       _type_hint: string
-    value_labels: legend
-    label_type: labPer
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
+    - category: dimension
+      description: ''
+      label: Was Per User Throttling applied (Yes/No)
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: was_per_user_throttling_applied_yesno
+      args:
+      - query_metrics.per_user_throttler
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 295
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - category: table_calculation
+      expression: 1-(${history.database_result_query_count}/${history.query_run_count_drill})
+      label: Cache Percent
+      value_format:
+      value_format_name: percent_2
+      _kind_hint: measure
+      table_calculation: cache_percent
+      _type_hint: number
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Cache Percentage
+    comparison_label: Queries From Database
     defaults_version: 1
+    hidden_pivots: {}
     note_state: collapsed
     note_display: hover
-    note_text: 'Did a query complete successfully, was it killed or did it encounter
-      an error. When reviewing dashboards with high error rates, check initially if
-      the dashboard has a required filter and loads on opening. Either change filter
-      to not be required or turn off run on opening toggle in dashboard filters.  '
+    note_text: The percentage of queries taken from cache. This is the total number
+      of where results were not sourced from the database and instead queried directly
+      from previous results in Looker.
+    hidden_fields: [history.query_run_count_drill, history.database_result_query_count]
     listen:
       Workspace ID: history.workspace_id
+      Source: history.source
       Date: history.created_date
-      Result Source: history.result_source
       Model: query.model
       Explore: query.view
-      User: user.name
-      Dashboard: dashboard.title
       Dialect: history.dialect
-      Source: history.source
-    row: 30
-    col: 18
-    width: 6
-    height: 8
-  - title: Queries By User Role
-    name: Queries By User Role
+      Query Created Hour of Day: history.created_hour_of_day
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 4
+    col: 20
+    width: 4
+    height: 4
+  - name: " (3)"
+    type: text
+    title_text: ''
+    subtitle_text: Timeseries
+    body_text: ''
+    row: 27
+    col: 0
+    width: 24
+    height: 3
+  - title: Load Process and Stream Main Query
+    name: Load Process and Stream Main Query
     model: system__activity
-    explore: history
-    type: looker_bar
-    fields: [history.query_run_count, role.name]
-    sorts: [history.query_run_count desc]
-    limit: 20
+    explore: query_metrics
+    type: single_value
+    fields: [average_of_load_process_and_stream_main_query, history.query_run_count_drill]
+    filters:
+      query_metrics.load_process_and_stream_main_query: ">0"
+    limit: 500
     column_limit: 50
     dynamic_fields:
     - category: dimension
       description: ''
-      label: Queries by User
+      label: Is Async Runtime Value Populated
       value_format:
       value_format_name:
       calculation_type: group_by
-      dimension: queries_by_user
+      dimension: is_async_runtime_value_populated
       args:
-      - user.name
-      - - label: Looker Delivery
-          filter: Looker Delivery
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3203
-        - label: Salesforce Integration
-          filter: Salesforce Integration
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3207
-        - label: Looker Operation
-          filter: Looker Operation
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3211
-        - label: Eray Kaşıkçı
-          filter: Eray Kaşıkçı
-          __FILE: healthcheck-sa-dashboards/dashboards/google_pso__performance_metrics.dashboard.lookml
-          __LINE_NUM: 3215
-      - Everyone Else
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 144
+      - 'No'
       _kind_hint: dimension
       _type_hint: string
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    value_labels: legend
-    label_type: labPer
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_grand_totals_query_in_memory
+      expression: ''
+      label: Average of Load Grand Totals Query In Memory
+      measure: average_of_load_grand_totals_query_in_memory
+      type: average
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_row_totals_query_in_memory
+      expression: ''
+      label: Average of Load Row Totals Query In Memory
+      measure: average_of_load_row_totals_query_in_memory
+      type: average
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_process_and_stream_main_query
+      expression: ''
+      label: Average of Load Process and Stream Main Query
+      measure: average_of_load_process_and_stream_main_query
+      type: average
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Load Process and Stream Main Query
+    comparison_label: Load Process & Stream Main Query Count
+    conditional_formatting: [{type: greater than, value: 0.2383, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: This metric only applies to streamed queries. It tracks the time it
+      takes in seconds to load the main query from the database, process it in Looker
+      and stream it to the browser.
     listen:
       Workspace ID: history.workspace_id
+      Source: history.source
       Date: history.created_date
-      Result Source: history.result_source
       Model: query.model
       Explore: query.view
-      User: user.name
-      Dashboard: dashboard.title
       Dialect: history.dialect
-      Source: history.source
-    row: 38
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 18
     col: 0
-    width: 24
-    height: 13
-  - title: 'Top 20 Queries '
-    name: 'Top 20 Queries '
+    width: 4
+    height: 4
+  - title: Acquire Connection Average (Copy)
+    name: Acquire Connection Average (Copy)
     model: system__activity
     explore: query_metrics
-    type: looker_bar
-    fields: [query.link, query_metrics.execute_main_query_average]
+    type: single_value
+    fields: [query_metrics.load_main_query_in_memory_average, history.query_run_count_drill]
     filters:
-      query_metrics.execute_main_query: NOT NULL
-    sorts: [query_metrics.execute_main_query_average desc]
-    limit: 20
+      query_metrics.load_main_query_in_memory: ">0"
+    limit: 500
     column_limit: 50
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 144
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Load Main Query in Memory
+    comparison_label: Load Main Query Queries
+    conditional_formatting: [{type: greater than, value: 0.2383, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
     defaults_version: 1
-    listen: {}
-    row: 83
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: This metric only applies to non-streamed queries. It tracks the time
+      it takes in seconds to load the main query results in memory from the source
+      database.
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 18
+    col: 4
+    width: 4
+    height: 4
+  - title: Load Grand Totals in Query in Memory
+    name: Load Grand Totals in Query in Memory
+    model: system__activity
+    explore: query_metrics
+    type: single_value
+    fields: [average_of_load_grand_totals_query_in_memory, history.query_run_count_drill]
+    filters:
+      query_metrics.load_grand_totals_query_in_memory: ">0"
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 144
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_grand_totals_query_in_memory
+      expression: ''
+      label: Average of Load Grand Totals Query In Memory
+      measure: average_of_load_grand_totals_query_in_memory
+      type: average
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Load Grand Totals In Memory Queries
+    comparison_label: Load Grand Totals Queries
+    conditional_formatting: [{type: greater than, value: 0.2383, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
+    defaults_version: 1
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: This metric only applies to non-streamed queries and those with totals
+      and row totals enabled. It tracks the time it takes in seconds to load the grand
+      total query result in memory from the source database.
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 18
+    col: 16
+    width: 4
+    height: 4
+  - name: Post-Query Execution Phase
+    type: text
+    title_text: Post-Query Execution Phase
+    subtitle_text: ''
+    body_text: ''
+    row: 22
     col: 0
     width: 24
-    height: 10
+    height: 1
+  - title: Load Total Query in Memory
+    name: Load Total Query in Memory
+    model: system__activity
+    explore: query_metrics
+    type: single_value
+    fields: [average_of_load_totals_query_in_memory, history.query_run_count_drill]
+    filters:
+      query_metrics.load_totals_query_in_memory: ">0"
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 144
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_totals_query_in_memory
+      expression: ''
+      label: Average of Load Totals Query In Memory
+      measure: average_of_load_totals_query_in_memory
+      type: average
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Load Total Query in Memory
+    comparison_label: Load Totals Queries
+    conditional_formatting: [{type: greater than, value: 0.2383, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
+    defaults_version: 1
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: This metric only applies to non-streamed queries and those with totals
+      enabled. It tracks the time it takes in seconds to load the total query results
+      in memory from the source database.
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 18
+    col: 8
+    width: 4
+    height: 4
+  - title: Load Grand Totals in Query in Memory (Copy)
+    name: Load Grand Totals in Query in Memory (Copy)
+    model: system__activity
+    explore: query_metrics
+    type: single_value
+    fields: [average_of_load_row_totals_query_in_memory, history.query_run_count_drill]
+    filters:
+      query_metrics.load_row_totals_query_in_memory: ">0"
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 144
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_grand_totals_query_in_memory
+      expression: ''
+      label: Average of Load Grand Totals Query In Memory
+      measure: average_of_load_grand_totals_query_in_memory
+      type: average
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_row_totals_query_in_memory
+      expression: ''
+      label: Average of Load Row Totals Query In Memory
+      measure: average_of_load_row_totals_query_in_memory
+      type: average
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Load Row Totals Query in Memory
+    comparison_label: Load Row Totals Queries
+    conditional_formatting: [{type: greater than, value: 0.2383, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
+    defaults_version: 1
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: This metric only applies to non-streamed queries and those with row
+      totals enabled. It tracks the time it takes in seconds to load the row total
+      query results in memory from the source database.
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 18
+    col: 12
+    width: 4
+    height: 4
+  - title: Load Grand Totals in Query in Memory (Copy 2)
+    name: Load Grand Totals in Query in Memory (Copy 2)
+    model: system__activity
+    explore: query_metrics
+    type: single_value
+    fields: [query_metrics.cache_load_average, history.query_run_count_drill]
+    filters:
+      query_metrics.cache_load: ">0"
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 144
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_grand_totals_query_in_memory
+      expression: ''
+      label: Average of Load Grand Totals Query In Memory
+      measure: average_of_load_grand_totals_query_in_memory
+      type: average
+    - _kind_hint: measure
+      _type_hint: number
+      based_on: query_metrics.load_row_totals_query_in_memory
+      expression: ''
+      label: Average of Load Row Totals Query In Memory
+      measure: average_of_load_row_totals_query_in_memory
+      type: average
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Cache Load
+    comparison_label: Cache Load Queries
+    conditional_formatting: [{type: greater than, value: 0.2383, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
+    defaults_version: 1
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: 'This metric only applies to cached queries. It tracks the time it
+      takes to pull raw results from the result set cache. '
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 18
+    col: 20
+    width: 4
+    height: 4
+  - title: Stream To Cache Time (Copy)
+    name: Stream To Cache Time (Copy)
+    model: system__activity
+    explore: query_metrics
+    type: single_value
+    fields: [query_metrics.postprocessing_average, history.query_run_count_drill]
+    filters:
+      query_metrics.post_processing: ">0"
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 649
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      description: ''
+      label: Was Per User Throttling applied (Yes/No)
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: was_per_user_throttling_applied_yesno
+      args:
+      - query_metrics.per_user_throttler
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 665
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    custom_color_enabled: true
+    show_single_value_title: true
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    enable_conditional_formatting: true
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    single_value_title: Post Processing Time
+    comparison_label: Post Processing Queries
+    conditional_formatting: [{type: greater than, value: 0.2234, background_color: "#FFFFFF",
+        font_color: "#F7930D", 
+        bold: false, italic: false, strikethrough: false, fields: !!null ''}]
+    defaults_version: 1
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: This is the amount of time taken to format and stream results to the
+      user browser cache and should be present in most queries. The recommended benchmark
+      is 0.2234s. If higher, review the number of custom dimensions and measures &
+      table calculations, use of pivots, use of merged queries and row limits within
+      high throughput dashboards. Identify if custom dimensions and measures can be
+      moved back into your Lookml model, if pivots are optimised to include only necessary
+      information. Can merged queries be removed via creation of new explores and
+      that row limits are in line with requirements. For example if using a single
+      value visualisation. Ensure that you are not querying with a limit to 5000 rows.
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 23
+    col: 12
+    width: 12
+    height: 4
+  - name: High Level Performance Metrics
+    type: text
+    title_text: High Level Performance Metrics
+    subtitle_text: ''
+    body_text: ''
+    row: 2
+    col: 0
+    width: 24
+    height: 2
+  - title: Query By Source
+    name: Query By Source
+    model: system__activity
+    explore: query_metrics
+    type: looker_pie
+    fields: [query_metrics.count, history.source]
+    filters:
+      is_async_runtime_value_populated: 'Yes'
+    sorts: [query_metrics.count desc]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 724
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      description: ''
+      label: Was Per User Throttling applied (Yes/No)
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: was_per_user_throttling_applied_yesno
+      args:
+      - query_metrics.per_user_throttler
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 740
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    value_labels: legend
+    label_type: labPer
+    custom_color_enabled: true
+    show_single_value_title: true
+    single_value_title: Stream to Cache Time
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    comparison_label: 'Model Init: From Cache'
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: 'The number of queries to which Per user throttling was applied. '
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+      Status: history.status
+    row: 51
+    col: 8
+    width: 8
+    height: 13
+  - title: Query By Status
+    name: Query By Status
+    model: system__activity
+    explore: query_metrics
+    type: looker_pie
+    fields: [query_metrics.count, history.status]
+    filters:
+      is_async_runtime_value_populated: 'Yes'
+    sorts: [query_metrics.count desc]
+    limit: 500
+    column_limit: 50
+    dynamic_fields:
+    - category: dimension
+      description: ''
+      label: Is Async Runtime Value Populated
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: is_async_runtime_value_populated
+      args:
+      - query_metrics.async_processing
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 724
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    - category: dimension
+      description: ''
+      label: Was Per User Throttling applied (Yes/No)
+      value_format:
+      value_format_name:
+      calculation_type: group_by
+      dimension: was_per_user_throttling_applied_yesno
+      args:
+      - query_metrics.per_user_throttler
+      - - label: 'Yes'
+          filter: ">0"
+          __FILE: google-pso-healthcheck/dashboards/google_pso__performance_metrics.dashboard.lookml
+          __LINE_NUM: 740
+      - 'No'
+      _kind_hint: dimension
+      _type_hint: string
+    value_labels: legend
+    label_type: labPer
+    custom_color_enabled: true
+    show_single_value_title: true
+    single_value_title: Stream to Cache Time
+    show_comparison: false
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    comparison_label: 'Model Init: From Cache'
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    defaults_version: 1
+    hidden_pivots: {}
+    note_state: collapsed
+    note_display: hover
+    note_text: 'The number of queries to which Per user throttling was applied. '
+    listen:
+      Workspace ID: history.workspace_id
+      Source: history.source
+      Date: history.created_date
+      Model: query.model
+      Explore: query.view
+      Dialect: history.dialect
+      Query Created Hour of Day: history.created_hour_of_day
+      Result Source (Cache/DB): history.result_source
+      Dashboard Name: dashboard.title
+      Connection Name: history.connection_name
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Row Limit: query.limit
+      User: user.name
+    row: 51
+    col: 16
+    width: 8
+    height: 13
   filters:
   - name: Date
     title: Date
@@ -3095,13 +4204,26 @@
     allow_multiple_values: true
     required: false
     ui_config:
-      type: relative_timeframes
-      display: inline
+      type: advanced
+      display: popover
       options: []
     model: system__activity
     explore: query_metrics
     listens_to_filters: []
     field: history.created_date
+  - name: Connection Name
+    title: Connection Name
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.connection_name
   - name: Model
     title: Model
     type: field_filter
@@ -3113,7 +4235,7 @@
       display: popover
     model: system__activity
     explore: query_metrics
-    listens_to_filters: [Dashboard, Explore, User]
+    listens_to_filters: [Dashboard Name, Explore, User]
     field: query.model
   - name: Explore
     title: Explore
@@ -3126,10 +4248,10 @@
       display: popover
     model: system__activity
     explore: query_metrics
-    listens_to_filters: [Dashboard, Model, User]
+    listens_to_filters: [Dashboard Name, Model, User]
     field: query.view
-  - name: Dashboard
-    title: Dashboard
+  - name: Dashboard Name
+    title: Dashboard Name
     type: field_filter
     default_value: ''
     allow_multiple_values: true
@@ -3170,7 +4292,7 @@
   - name: Source
     title: Source
     type: field_filter
-    default_value: -"scheduled_task"
+    default_value: -"scheduled_task",-suggest
     allow_multiple_values: true
     required: false
     ui_config:
@@ -3191,12 +4313,12 @@
       display: popover
     model: system__activity
     explore: query_metrics
-    listens_to_filters: [Dashboard, Model, Explore]
+    listens_to_filters: [Dashboard Name, Model, Explore]
     field: user.name
-  - name: Result Source
-    title: Result Source
+  - name: Result Source (Cache/DB)
+    title: Result Source (Cache/DB)
     type: field_filter
-    default_value: ''
+    default_value: query
     allow_multiple_values: true
     required: false
     ui_config:
@@ -3209,7 +4331,40 @@
   - name: Dialect
     title: Dialect
     type: field_filter
-    default_value: bigquery_standard_sql
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options:
+      - postgres
+      - trino
+      - bigquery_standard_sql
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.dialect
+  - name: Query Created Hour of Day
+    title: Query Created Hour of Day
+    type: field_filter
+    default_value: "[0,23]"
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: range_slider
+      display: inline
+      options:
+        min: 0
+        max: 23
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.created_hour_of_day
+  - name: Runtime Tiers in Seconds
+    title: Runtime Tiers in Seconds
+    type: field_filter
+    default_value: ''
     allow_multiple_values: true
     required: false
     ui_config:
@@ -3218,4 +4373,18 @@
     model: system__activity
     explore: history
     listens_to_filters: []
-    field: history.dialect
+    field: history.runtime_tiers
+  - name: Row Limit
+    title: Row Limit
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options: []
+    model: system__activity
+    explore: query_metrics
+    listens_to_filters: []
+    field: query.limit

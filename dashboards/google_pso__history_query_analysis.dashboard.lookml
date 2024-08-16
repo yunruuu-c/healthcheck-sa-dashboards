@@ -4,7 +4,9 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   crossfilter_enabled: true
+  load_configuration: wait
   description: ''
+  filters_location_top: false
   preferred_slug: e48fmsliaOZ7IeeIMvN5Yv
   elements:
   - title: Query Run Count
@@ -58,10 +60,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 2
     col: 3
     width: 4
@@ -72,8 +80,7 @@
     explore: history
     type: single_value
     fields: [history.query_run_count, history.average_runtime]
-    filters:
-      history.result_source: cache
+    filters: {}
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -120,10 +127,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 6
     col: 3
     width: 4
@@ -133,9 +146,9 @@
     model: system__activity
     explore: history
     type: single_value
-    fields: [history.query_run_count, history.average_runtime]
+    fields: [history.database_result_query_count, history.average_runtime]
     filters:
-      history.result_source: query
+      role.name: ''
     limit: 500
     column_limit: 50
     custom_color_enabled: true
@@ -182,10 +195,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 10
     col: 3
     width: 4
@@ -198,7 +217,6 @@
     fields: [history.query_run_count, history.result_source, history.completed_date]
     pivots: [history.result_source]
     filters:
-      history.result_source: -"stale_cache",-NULL
       history.completed_day_of_week: "-Saturday,-Sunday"
     sorts: [history.result_source, history.completed_date desc]
     limit: 500
@@ -262,10 +280,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 17
     col: 0
     width: 24
@@ -278,7 +302,6 @@
     fields: [history.result_source, history.completed_date, history.average_runtime]
     pivots: [history.result_source]
     filters:
-      history.result_source: -"stale_cache",-NULL
       history.completed_day_of_week: "-Saturday,-Sunday"
     sorts: [history.result_source, history.completed_date desc]
     limit: 500
@@ -342,10 +365,16 @@
       Created Date: history.completed_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 27
     col: 0
     width: 24
@@ -358,8 +387,7 @@
     fields: [history.issuer_source, history.query_run_count, history.result_source]
     pivots: [history.issuer_source]
     fill_fields: [history.issuer_source]
-    filters:
-      history.result_source: -"stale_cache"
+    filters: {}
     sorts: [history.issuer_source, history.query_run_count desc 0]
     limit: 500
     column_limit: 50
@@ -401,10 +429,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 2
     col: 19
     width: 5
@@ -467,11 +501,17 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
-    row: 88
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
+    row: 49
     col: 0
     width: 8
     height: 17
@@ -481,10 +521,7 @@
     explore: history
     type: looker_grid
     fields: [history.query_run_count, history.message]
-    filters:
-      history.status: error
-      history.source: -api,-api3,-api4,-"__lookml_test__"
-      history.workspace_id: production
+    filters: {}
     sorts: [history.query_run_count desc]
     limit: 50
     column_limit: 50
@@ -547,11 +584,17 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
-    row: 121
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
+    row: 82
     col: 0
     width: 24
     height: 14
@@ -561,8 +604,7 @@
     explore: history
     type: looker_bar
     fields: [dashboard.title, error_results_from_database, history.database_result_query_count]
-    filters:
-      history.workspace_id: production
+    filters: {}
     sorts: [error_results_from_database desc]
     limit: 10
     column_limit: 50
@@ -679,11 +721,17 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
-    row: 107
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
+    row: 68
     col: 0
     width: 8
     height: 14
@@ -694,7 +742,6 @@
     type: looker_bar
     fields: [error_results_from_database, history.database_result_query_count, look.title]
     filters:
-      history.workspace_id: production
       look.title: "-EMPTY"
     sorts: [error_results_from_database desc]
     limit: 10
@@ -808,11 +855,17 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
-    row: 107
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
+    row: 68
     col: 16
     width: 8
     height: 14
@@ -822,8 +875,7 @@
     explore: history
     type: looker_bar
     fields: [dashboard.title, history.database_result_query_count, killed_results_from_database]
-    filters:
-      history.workspace_id: production
+    filters: {}
     sorts: [killed_results_from_database desc]
     limit: 10
     column_limit: 50
@@ -935,271 +987,31 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
-    row: 107
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
+    row: 68
     col: 8
     width: 8
     height: 14
-  - title: Top 10 Dashboards by Average Runtime
-    name: Top 10 Dashboards by Average Runtime
+  - title: Queries by Dashboard
+    name: Queries by Dashboard
     model: system__activity
     explore: history
     type: looker_bar
-    fields: [dashboard.title, history.database_result_query_count, history.average_runtime]
+    fields: [history.database_result_query_count, dashboard.title]
     filters:
-      history.workspace_id: production
-      dashboard.title: "-EMPTY"
-      history.result_source: query
-      history.average_runtime: NOT NULL
-    sorts: [history.database_result_query_count desc]
-    limit: 10
-    column_limit: 50
-    dynamic_fields:
-    - category: measure
-      label: Error Results from Database
-      based_on: history.database_result_query_count
-      _kind_hint: measure
-      measure: error_results_from_database
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    - category: measure
-      label: Killed Results from Database
-      based_on: history.database_result_query_count
-      _kind_hint: measure
-      measure: killed_results_from_database
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: killed
-    - category: measure
-      label: Error Results from Cache
-      based_on: history.cache_result_query_count
-      _kind_hint: measure
-      measure: error_results_from_cache
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    - category: measure
-      label: Killed Results from Cache
-      based_on: history.cache_result_query_count
-      _kind_hint: measure
-      measure: killed_results_from_cache
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: true
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    y_axes: [{label: !!null '', orientation: top, series: [{axisId: error_results_from_database,
-            id: error_results_from_database, name: Error Results from Database}],
-        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
-        tickDensityCustom: 5, type: linear}, {label: '', orientation: bottom, series: [
-          {axisId: error_rate, id: error_rate, name: Error Rate}], showLabels: true,
-        showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
-        type: linear}]
-    x_axis_zoom: true
-    y_axis_zoom: true
-    font_size: '12'
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: '12'
-    rows_font_size: '12'
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    defaults_version: 1
-    value_labels: legend
-    label_type: labPer
-    hidden_pivots: {}
-    minimum_column_width: 75
-    show_sql_query_menu_options: false
-    show_totals: true
-    show_row_totals: true
-    truncate_header: false
-    hidden_fields: [history.database_result_query_count]
-    listen:
-      Created Date: history.created_date
-      Explore: query.view
-      Model: query.model
-      User Name: user.name
-      User Role: role.name
-      Dialect: history.dialect
-    row: 61
-    col: 8
-    width: 8
-    height: 11
-  - title: Top 10 Dashboard averages per query tier by 5 minute+ queries
-    name: Top 10 Dashboard averages per query tier by 5 minute+ queries
-    model: system__activity
-    explore: history
-    type: looker_bar
-    fields: [dashboard.title, history.database_result_query_count, history.average_runtime,
-      history.runtime_tiers]
-    pivots: [history.runtime_tiers]
-    filters:
-      history.workspace_id: production
-      dashboard.title: "-EMPTY"
-      history.result_source: query
-      history.average_runtime: NOT NULL
-    sorts: [history.database_result_query_count desc 5, history.runtime_tiers]
-    limit: 10
-    column_limit: 50
-    dynamic_fields:
-    - category: measure
-      label: Error Results from Database
-      based_on: history.database_result_query_count
-      _kind_hint: measure
-      measure: error_results_from_database
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    - category: measure
-      label: Killed Results from Database
-      based_on: history.database_result_query_count
-      _kind_hint: measure
-      measure: killed_results_from_database
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: killed
-    - category: measure
-      label: Error Results from Cache
-      based_on: history.cache_result_query_count
-      _kind_hint: measure
-      measure: error_results_from_cache
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    - category: measure
-      label: Killed Results from Cache
-      based_on: history.cache_result_query_count
-      _kind_hint: measure
-      measure: killed_results_from_cache
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: normal
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: true
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    y_axes: [{label: !!null '', orientation: top, series: [{axisId: error_results_from_database,
-            id: error_results_from_database, name: Error Results from Database}],
-        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
-        tickDensityCustom: 5, type: linear}, {label: '', orientation: bottom, series: [
-          {axisId: error_rate, id: error_rate, name: Error Rate}], showLabels: true,
-        showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
-        type: linear}]
-    x_axis_zoom: true
-    y_axis_zoom: true
-    font_size: '12'
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: '12'
-    rows_font_size: '12'
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    defaults_version: 1
-    value_labels: legend
-    label_type: labPer
-    hidden_pivots: {}
-    minimum_column_width: 75
-    show_sql_query_menu_options: false
-    show_totals: true
-    show_row_totals: true
-    truncate_header: false
-    hidden_fields: [history.database_result_query_count]
-    listen:
-      Created Date: history.created_date
-      Explore: query.view
-      Model: query.model
-      User Name: user.name
-      User Role: role.name
-      Dialect: history.dialect
-    row: 72
-    col: 0
-    width: 24
-    height: 13
-  - title: Dashboards by Run Count
-    name: Dashboards by Run Count
-    model: system__activity
-    explore: history
-    type: looker_bar
-    fields: [dashboard.title, history.dashboard_run_count]
-    filters:
-      dashboard.title: "-EMPTY"
       history.completed_date: 30 days
-    sorts: [history.dashboard_run_count desc]
-    limit: 10
+      dashboard.title: "-NULL"
+    sorts: [history.database_result_query_count desc]
+    limit: 15
     column_limit: 50
     x_axis_gridlines: false
     y_axis_gridlines: true
@@ -1234,62 +1046,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
-    row: 61
-    col: 0
-    width: 8
-    height: 11
-  - title: Queries by Connection
-    name: Queries by Connection
-    model: system__activity
-    explore: history
-    type: looker_bar
-    fields: [history.connection_name, history.database_result_query_count]
-    filters:
-      history.completed_date: 30 days
-    sorts: [history.database_result_query_count desc]
-    limit: 10
-    column_limit: 50
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    hidden_pivots: {}
-    listen:
-      Created Date: history.created_date
-      Explore: query.view
-      Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
-      Dialect: history.dialect
-    row: 88
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
+    row: 49
     col: 8
     width: 8
     height: 17
@@ -1339,10 +1105,16 @@
       Created Date: history.completed_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 36
     col: 0
     width: 24
@@ -1370,10 +1142,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 2
     col: 0
     width: 3
@@ -1401,10 +1179,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 11
     col: 0
     width: 3
@@ -1442,10 +1226,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 8
     col: 0
     width: 3
@@ -1491,10 +1281,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 5
     col: 0
     width: 3
@@ -1508,7 +1304,6 @@
     filters:
       dashboard.link: ''
       query.total: 'Yes'
-      history.result_source: query
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -1543,10 +1338,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 10
     col: 11
     width: 4
@@ -1558,7 +1359,6 @@
     type: single_value
     fields: [history.query_run_count, history.average_runtime]
     filters:
-      history.result_source: query
       query.row_totals: 'Yes'
     limit: 500
     column_limit: 50
@@ -1594,10 +1394,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 6
     col: 15
     width: 4
@@ -1609,7 +1415,6 @@
     type: single_value
     fields: [history.query_run_count, history.average_runtime]
     filters:
-      history.result_source: query
       query.formatted_pivots: "-EMPTY"
     sorts: [history.query_run_count desc]
     limit: 500
@@ -1646,10 +1451,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 10
     col: 15
     width: 4
@@ -1661,7 +1472,6 @@
     type: single_value
     fields: [history.query_run_count, history.average_runtime]
     filters:
-      history.result_source: query
       query.dynamic_fields: "-EMPTY,-[]"
     sorts: [history.query_run_count desc]
     limit: 500
@@ -1698,10 +1508,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 2
     col: 15
     width: 4
@@ -1713,7 +1529,6 @@
     type: single_value
     fields: [history.query_run_count, history.average_runtime]
     filters:
-      history.result_source: query
       query.row_totals: 'No'
       query.total: 'No'
       is_pivot_query_yes_no: 'No'
@@ -1747,12 +1562,12 @@
       - query.dynamic_fields
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 1887
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1748
         - label: 'No'
           filter: "[]"
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 1889
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1752
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -1767,8 +1582,8 @@
       - query.formatted_pivots
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 1903
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1768
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -1789,10 +1604,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 6
     col: 11
     width: 4
@@ -1805,7 +1626,6 @@
     fields: [history.query_run_count, history.average_runtime]
     filters:
       history.completed_date: 30 days
-      history.result_source: query
       user_facts.is_admin: 'Yes'
     sorts: [history.query_run_count desc]
     limit: 500
@@ -1836,12 +1656,12 @@
       - query.dynamic_fields
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 1969
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1837
         - label: 'No'
           filter: "[]"
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 1971
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1841
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -1856,8 +1676,8 @@
       - query.formatted_pivots
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 1985
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1857
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -1878,10 +1698,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 2
     col: 7
     width: 4
@@ -1893,7 +1719,6 @@
     type: single_value
     fields: [history.query_run_count, history.average_runtime]
     filters:
-      history.result_source: query
       user_facts.is_developer: 'Yes'
     limit: 500
     column_limit: 50
@@ -1923,12 +1748,12 @@
       - query.dynamic_fields
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2049
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1924
         - label: 'No'
           filter: "[]"
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2051
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1928
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -1943,8 +1768,8 @@
       - query.formatted_pivots
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2065
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 1944
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -1985,10 +1810,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 6
     col: 7
     width: 4
@@ -2000,7 +1831,6 @@
     type: single_value
     fields: [history.query_run_count, history.average_runtime]
     filters:
-      history.result_source: query
       user_facts.is_explorer: 'Yes'
       user_facts.is_content_saver: 'Yes'
     limit: 500
@@ -2031,12 +1861,12 @@
       - query.dynamic_fields
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2150
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2032
         - label: 'No'
           filter: "[]"
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2152
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2036
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -2051,8 +1881,8 @@
       - query.formatted_pivots
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2166
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2052
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -2093,10 +1923,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 10
     col: 7
     width: 4
@@ -2108,7 +1944,6 @@
     type: single_value
     fields: [history.query_run_count, history.average_runtime]
     filters:
-      history.result_source: query
       user_facts.is_viewer: 'Yes'
     limit: 500
     column_limit: 50
@@ -2138,12 +1973,12 @@
       - query.dynamic_fields
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2250
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2139
         - label: 'No'
           filter: "[]"
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2252
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2143
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -2158,8 +1993,8 @@
       - query.formatted_pivots
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2266
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2159
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -2200,10 +2035,16 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
     row: 2
     col: 11
     width: 4
@@ -2216,9 +2057,8 @@
     fields: [history.query_run_count, history.average_runtime, role.name]
     filters:
       history.completed_date: 30 days
-      history.result_source: query
     sorts: [history.query_run_count desc]
-    limit: 500
+    limit: 15
     column_limit: 50
     dynamic_fields:
     - measure: count_of_link
@@ -2246,12 +2086,12 @@
       - query.dynamic_fields
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2351
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2247
         - label: 'No'
           filter: "[]"
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2353
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2251
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -2266,8 +2106,8 @@
       - query.formatted_pivots
       - - label: 'No'
           filter: EMPTY
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2367
+          __FILE: google-pso-healthcheck/dashboards/google_pso__history_query_analysis.dashboard.lookml
+          __LINE_NUM: 2267
       - 'Yes'
       _kind_hint: dimension
       _type_hint: string
@@ -2344,11 +2184,17 @@
       Created Date: history.created_date
       Explore: query.view
       Model: query.model
-      Dashboard Title: dashboard.title
-      User Name: user.name
-      User Role: role.name
       Dialect: history.dialect
-    row: 88
+      Dashboard Title: dashboard.title
+      Source: history.source
+      Status: history.status
+      Workspace ID: history.workspace_id
+      Runtime Tiers in Seconds: history.runtime_tiers
+      Connection Name: history.connection_name
+      Result Source (Cache/DB): history.result_source
+      User: user.name
+      Query Created Hour of Day: history.created_hour_of_day
+    row: 49
     col: 16
     width: 8
     height: 17
@@ -2364,15 +2210,7 @@
     type: text
     title_text: Error Analysis
     body_text: ''
-    row: 105
-    col: 0
-    width: 24
-    height: 2
-  - name: Query Dashboard Analysis
-    type: text
-    title_text: Query Dashboard Analysis
-    body_text: ''
-    row: 59
+    row: 66
     col: 0
     width: 24
     height: 2
@@ -2380,231 +2218,24 @@
     type: text
     title_text: Individual Query Analysis
     body_text: ''
-    row: 85
-    col: 0
-    width: 24
-    height: 3
-  - name: Queries by Source
-    type: text
-    title_text: Queries by Source
-    body_text: ''
     row: 46
     col: 0
     width: 24
     height: 3
-  - title: Top 10 Dashboards by Database Query Count
-    name: Top 10 Dashboards by Database Query Count
-    model: system__activity
-    explore: history
-    type: looker_bar
-    fields: [dashboard.title, history.database_result_query_count]
-    filters:
-      history.workspace_id: production
-      dashboard.title: "-EMPTY"
-      history.result_source: query
-      history.average_runtime: NOT NULL
-    sorts: [history.database_result_query_count desc]
-    limit: 10
-    column_limit: 50
-    dynamic_fields:
-    - category: measure
-      label: Error Results from Database
-      based_on: history.database_result_query_count
-      _kind_hint: measure
-      measure: error_results_from_database
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    - category: measure
-      label: Killed Results from Database
-      based_on: history.database_result_query_count
-      _kind_hint: measure
-      measure: killed_results_from_database
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: killed
-    - category: measure
-      label: Error Results from Cache
-      based_on: history.cache_result_query_count
-      _kind_hint: measure
-      measure: error_results_from_cache
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    - category: measure
-      label: Killed Results from Cache
-      based_on: history.cache_result_query_count
-      _kind_hint: measure
-      measure: killed_results_from_cache
-      type: count_distinct
-      _type_hint: number
-      filters:
-        history.status: error
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: true
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    y_axes: [{label: !!null '', orientation: top, series: [{axisId: error_results_from_database,
-            id: error_results_from_database, name: Error Results from Database}],
-        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
-        tickDensityCustom: 5, type: linear}, {label: '', orientation: bottom, series: [
-          {axisId: error_rate, id: error_rate, name: Error Rate}], showLabels: true,
-        showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
-        type: linear}]
-    x_axis_zoom: true
-    y_axis_zoom: true
-    font_size: '12'
-    show_row_numbers: true
-    transpose: false
-    truncate_text: true
-    hide_totals: false
-    hide_row_totals: false
-    size_to_fit: true
-    table_theme: white
-    enable_conditional_formatting: false
-    header_text_alignment: left
-    header_font_size: '12'
-    rows_font_size: '12'
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    defaults_version: 1
-    value_labels: legend
-    label_type: labPer
-    hidden_pivots: {}
-    minimum_column_width: 75
-    show_sql_query_menu_options: false
-    show_totals: true
-    show_row_totals: true
-    truncate_header: false
-    hidden_fields:
-    listen:
-      Created Date: history.created_date
-      Explore: query.view
-      Model: query.model
-      User Name: user.name
-      User Role: role.name
-      Dialect: history.dialect
-    row: 61
-    col: 16
-    width: 8
-    height: 11
-  - title: Top 20 User Accounts
-    name: Top 20 User Accounts
-    model: system__activity
-    explore: history
-    type: looker_bar
-    fields: [history.query_run_count, user.name]
-    filters:
-      history.issuer_source: User
-    sorts: [history.query_run_count desc]
-    limit: 20
-    column_limit: 50
-    dynamic_fields:
-    - category: dimension
-      description: ''
-      label: Queries by User
-      value_format:
-      value_format_name:
-      calculation_type: group_by
-      dimension: queries_by_user
-      args:
-      - user.name
-      - - label: Looker Delivery
-          filter: Looker Delivery
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2639
-        - label: Salesforce Integration
-          filter: Salesforce Integration
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2641
-        - label: Looker Operation
-          filter: Looker Operation
-          __FILE: data_development/dashboards/Google_PSO_-_History_Query_Analysis.dashboard.lookml
-          __LINE_NUM: 2643
-        - Everyone Else
-      _kind_hint: dimension
-      _type_hint: string
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    value_labels: labels
-    label_type: labPer
-    defaults_version: 1
-    listen:
-      Created Date: history.created_date
-      Explore: query.view
-      Model: query.model
-      Dashboard Title: dashboard.title
-      User Role: role.name
-      Dialect: history.dialect
-    row: 49
-    col: 0
-    width: 24
-    height: 10
   - name: ''
     type: text
     title_text: ''
     subtitle_text: ''
     body_text: |-
       <nav style="font-size: 18px; padding: 5px 10px 0 10px; height: 60px">
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics">Performance Metrics</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers">Outliers</a>
-      <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__history_query_analysis">
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics?">Performance Metrics</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers?">Outliers</a>
+      <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__history_query_analysis?">
       History</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery">Schedules</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries">Merged Queries</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count">Large Dashboards</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_">Dashboard Optimisation</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery?">Schedules</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries?">Merged Queries</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count?">Large Dashboards</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_?">Dashboard Optimisation</a>
       </nav>
     row: 0
     col: 0
@@ -2618,26 +2249,39 @@
     allow_multiple_values: true
     required: false
     ui_config:
-      type: relative_timeframes
-      display: inline
+      type: advanced
+      display: popover
       options: []
     model: system__activity
     explore: query_metrics
     listens_to_filters: []
     field: history.created_date
-  - name: User Name
-    title: User Name
+  - name: Connection Name
+    title: Connection Name
     type: field_filter
     default_value: ''
     allow_multiple_values: true
     required: false
     ui_config:
-      type: advanced
+      type: tag_list
       display: popover
     model: system__activity
-    explore: query_metrics
+    explore: history
     listens_to_filters: []
-    field: user.name
+    field: history.connection_name
+  - name: Model
+    title: Model
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: query.model
   - name: Explore
     title: Explore
     type: field_filter
@@ -2664,42 +2308,114 @@
     explore: history
     listens_to_filters: []
     field: dashboard.title
-  - name: Model
-    title: Model
+  - name: Status
+    title: Status
+    type: field_filter
+    default_value: complete
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.status
+  - name: Workspace ID
+    title: Workspace ID
+    type: field_filter
+    default_value: production
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: inline
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.workspace_id
+  - name: Source
+    title: Source
+    type: field_filter
+    default_value: -"scheduled_task",-suggest
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.source
+  - name: User
+    title: User
     type: field_filter
     default_value: ''
     allow_multiple_values: true
     required: false
     ui_config:
-      type: tag_list
-      display: popover
-    model: system__activity
-    explore: history
-    listens_to_filters: []
-    field: query.model
-  - name: User Role
-    title: User Role
-    type: field_filter
-    default_value: ''
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: tag_list
-      display: popover
-    model: system__activity
-    explore: history
-    listens_to_filters: []
-    field: role.name
-  - name: Dialect
-    title: Dialect
-    type: field_filter
-    default_value: bigquery_standard_sql
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: tag_list
+      type: advanced
       display: popover
     model: system__activity
     explore: query_metrics
     listens_to_filters: []
+    field: user.name
+  - name: Result Source (Cache/DB)
+    title: Result Source (Cache/DB)
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.result_source
+  - name: Dialect
+    title: Dialect
+    type: field_filter
+    default_value: postgres,trino
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+      options:
+      - postgres
+      - trino
+      - bigquery_standard_sql
+    model: system__activity
+    explore: query_metrics
+    listens_to_filters: []
     field: history.dialect
+  - name: Query Created Hour of Day
+    title: Query Created Hour of Day
+    type: field_filter
+    default_value: "[0,23]"
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: range_slider
+      display: inline
+      options:
+        min: 0
+        max: 23
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.created_hour_of_day
+  - name: Runtime Tiers in Seconds
+    title: Runtime Tiers in Seconds
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.runtime_tiers

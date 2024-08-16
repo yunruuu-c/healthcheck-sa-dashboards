@@ -3,7 +3,9 @@
   title: Google PSO - Content Delivery
   layout: newspaper
   preferred_viewer: dashboards-next
+  load_configuration: wait
   description: ''
+  filters_location_top: false
   preferred_slug: DaY64VAMWuweTG5UOz6rmH
   elements:
   - title: Google PSO - Content Delivery
@@ -39,6 +41,12 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 2
     col: 16
     width: 8
@@ -104,6 +112,12 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 8
     col: 16
     width: 8
@@ -139,6 +153,12 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 2
     col: 0
     width: 16
@@ -151,7 +171,6 @@
     fields: [scheduled_job.created_time, scheduled_job.finalized_time, scheduled_job.id,
       scheduled_job.status, user.name, scheduled_job.status_detail, scheduled_job_stage.stage,
       scheduled_plan_destination.type, scheduled_plan_destination.format]
-    filters: {}
     sorts: [scheduled_job.status]
     limit: 500
     column_limit: 50
@@ -175,6 +194,12 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 21
     col: 8
     width: 16
@@ -278,6 +303,12 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 21
     col: 0
     width: 8
@@ -345,6 +376,12 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 27
     col: 8
     width: 16
@@ -415,6 +452,12 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 34
     col: 8
     width: 16
@@ -452,6 +495,10 @@
     listen:
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 27
     col: 0
     width: 8
@@ -491,7 +538,13 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
-    row: 37
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
+    row: 33
     col: 0
     width: 8
     height: 6
@@ -528,7 +581,13 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
-    row: 43
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
+    row: 39
     col: 0
     width: 8
     height: 6
@@ -640,24 +699,30 @@
       Run Once (Yes / No): scheduled_plan.run_once
       Created Date: scheduled_job.created_date
       Status: scheduled_job.status
+      Schedule Plan: scheduled_plan.name
+      Dashboard: dashboard.title
+      User: user.name
+      Explore: query.view
+      Model: query.model
+      Created Hour of Day: scheduled_job.created_hour_of_day
     row: 15
     col: 16
     width: 8
     height: 6
-  - name: " (2)"
+  - name: ''
     type: text
     title_text: ''
     subtitle_text: ''
     body_text: |-
       <nav style="font-size: 18px; padding: 5px 10px 0 10px; height: 60px">
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics">Performance Metrics</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers">Outliers</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis">History</a>
-      <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__content_delivery">
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics?">Performance Metrics</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers?">Outliers</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis?">History</a>
+      <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__content_delivery?">
       Schedules</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries">Merged Queries</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count">Large Dashboards</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_">Dashboard Optimisation</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries?">Merged Queries</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count?">Large Dashboards</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_?">Dashboard Optimisation</a>
       </nav>
     row: 0
     col: 0
@@ -667,12 +732,12 @@
   - name: Created Date
     title: Created Date
     type: field_filter
-    default_value: 7 day
+    default_value: 30 day
     allow_multiple_values: true
     required: false
     ui_config:
-      type: relative_timeframes
-      display: inline
+      type: advanced
+      display: popover
       options: []
     model: system__activity
     explore: scheduled_plan
@@ -691,6 +756,71 @@
     explore: scheduled_plan
     listens_to_filters: []
     field: scheduled_plan.run_once
+  - name: Schedule Plan
+    title: Schedule Plan
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: scheduled_plan
+    listens_to_filters: []
+    field: scheduled_plan.name
+  - name: Model
+    title: Model
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: scheduled_plan
+    listens_to_filters: []
+    field: query.model
+  - name: Explore
+    title: Explore
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: scheduled_plan
+    listens_to_filters: []
+    field: query.view
+  - name: Dashboard
+    title: Dashboard
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: scheduled_plan
+    listens_to_filters: []
+    field: dashboard.title
+  - name: User
+    title: User
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: scheduled_plan
+    listens_to_filters: []
+    field: user.name
   - name: Status
     title: Status
     type: field_filter
@@ -699,8 +829,24 @@
     required: false
     ui_config:
       type: tag_list
-      display: inline
+      display: popover
     model: system__activity
     explore: scheduled_plan
     listens_to_filters: []
     field: scheduled_job.status
+  - name: Created Hour of Day
+    title: Created Hour of Day
+    type: field_filter
+    default_value: "[0,23]"
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: range_slider
+      display: inline
+      options:
+        min: 0
+        max: 23
+    model: system__activity
+    explore: scheduled_plan
+    listens_to_filters: []
+    field: scheduled_job.created_hour_of_day

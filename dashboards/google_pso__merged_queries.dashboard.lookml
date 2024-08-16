@@ -3,7 +3,9 @@
   title: Google PSO - Merged Queries
   layout: newspaper
   preferred_viewer: dashboards-next
+  load_configuration: wait
   description: ''
+  filters_location_top: false
   preferred_slug: BCI2PV2bnXQDRYnHEYcGHh
   elements:
   - name: ''
@@ -74,6 +76,8 @@
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: user.name
+      Dashboard Name: dashboard.title
     row: 7
     col: 16
     width: 8
@@ -101,10 +105,12 @@
     defaults_version: 1
     listen:
       Status: history.status
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 5
     col: 8
     width: 4
@@ -144,10 +150,12 @@
     listen:
       Status: history.status
       Created Date: history.created_date
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 5
     col: 12
     width: 3
@@ -189,6 +197,7 @@
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Name: dashboard.title
     row: 5
     col: 18
     width: 3
@@ -217,10 +226,12 @@
     defaults_version: 1
     listen:
       Status: history.status
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 5
     col: 21
     width: 3
@@ -316,10 +327,12 @@
     listen:
       Status: history.status
       Created Date: history.created_date
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 20
     col: 8
     width: 8
@@ -415,10 +428,12 @@
     listen:
       Status: history.status
       Created Date: history.created_date
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 20
     col: 0
     width: 8
@@ -489,10 +504,12 @@
     listen:
       Status: history.status
       Created Date: history.created_date
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 7
     col: 8
     width: 8
@@ -568,10 +585,12 @@
     listen:
       Status: history.status
       Created Date: history.created_date
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 5
     col: 0
     width: 8
@@ -665,10 +684,12 @@
     listen:
       Status: history.status
       Created Date: history.created_date
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 12
     col: 8
     width: 8
@@ -746,10 +767,12 @@
     listen:
       Status: history.status
       Created Date: history.created_date
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 12
     col: 0
     width: 8
@@ -759,9 +782,10 @@
     model: system__activity
     explore: history
     type: looker_grid
-    fields: [query.count, history.query_run_count, user.name]
+    fields: [query.count, history.query_run_count, dashboard_creator.name]
     filters:
       history.source: '"merge_query"'
+      dashboard_creator.name: "-NULL"
     sorts: [query.count desc]
     limit: 500
     column_limit: 50
@@ -845,10 +869,11 @@
     listen:
       Status: history.status
       Created Date: history.created_date
-      Result Source: history.result_source
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 20
     col: 16
     width: 8
@@ -920,6 +945,7 @@
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Name: dashboard.title
     row: 31
     col: 0
     width: 8
@@ -932,7 +958,6 @@
     fields: [history.query_run_count, dashboard.title]
     filters:
       merge_query.id: NOT NULL
-      dashboard.title: "-NULL"
       result_maker.is_merge_query: 'Yes'
     sorts: [history.query_run_count desc]
     limit: 500
@@ -1014,6 +1039,8 @@
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
     row: 44
     col: 0
     width: 24
@@ -1084,6 +1111,7 @@
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Name: dashboard.title
     row: 29
     col: 16
     width: 8
@@ -1132,7 +1160,6 @@
       dashboard.id, count_of_explore, dashboard_element.id]
     filters:
       merge_query.id: NOT NULL
-      dashboard.title: "-NULL"
     sorts: [merge_query_source_query.count desc, history.query_run_count desc]
     limit: 500
     column_limit: 50
@@ -1200,7 +1227,7 @@
     series_text_format:
       pivots_used: {}
     conditional_formatting: [{type: along a scale..., value: !!null '', background_color: "#0666EB",
-        font_color: !!null '', color_application: {collection_id: light, palette_id: light-sequential-0},
+        font_color: !!null '', 
         bold: false, italic: false, strikethrough: false, fields: []}]
     x_axis_gridlines: false
     y_axis_gridlines: true
@@ -1234,6 +1261,7 @@
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Name: dashboard.title
     row: 38
     col: 0
     width: 24
@@ -1304,12 +1332,14 @@
     hidden_pivots: {}
     hidden_fields: [history.query_run_count, filtered_historyquery_run_count]
     listen:
-      Result Source: history.result_source
       Status: history.status
       Created Date: history.created_date
       Dialect: history.dialect
       Model: query.model
       Explore: query.view
+      Dashboard Creator: dashboard_creator.name
+      Dashboard Name: dashboard.title
+      Source: history.result_source
     row: 5
     col: 15
     width: 3
@@ -1382,6 +1412,7 @@
       Moved to Trash (Yes / No): dashboard.moved_to_trash
       Model: query.model
       Explore: query.view
+      Dashboard Name: dashboard.title
     row: 29
     col: 8
     width: 8
@@ -1392,45 +1423,19 @@
     subtitle_text: ''
     body_text: |-
       <nav style="font-size: 18px; padding: 5px 10px 0 10px; height: 60px">
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics">Performance Metrics</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers">Outliers</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis">History</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery">Schedules</a>
-        <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__merged_queries">Merged Queries</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count">Large Dashboards</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_">Dashboard Optimisation</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics?">Performance Metrics</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_cloud__query_outliers?">Outliers</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis?">History</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery?">Schedules</a>
+        <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_pso__merged_queries?">Merged Queries</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count?">Large Dashboards</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_?">Dashboard Optimisation</a>
       </nav>
     row: 0
     col: 0
     width: 24
     height: 2
   filters:
-  - name: Result Source
-    title: Result Source
-    type: field_filter
-    default_value: query
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: advanced
-      display: popover
-    model: system__activity
-    explore: history
-    listens_to_filters: []
-    field: history.result_source
-  - name: Status
-    title: Status
-    type: field_filter
-    default_value: ''
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: advanced
-      display: popover
-    model: system__activity
-    explore: history
-    listens_to_filters: []
-    field: history.status
   - name: Created Date
     title: Created Date
     type: field_filter
@@ -1445,6 +1450,84 @@
     explore: history
     listens_to_filters: []
     field: history.created_date
+  - name: Model
+    title: Model
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: query.model
+  - name: Explore
+    title: Explore
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: query.view
+  - name: Dashboard Name
+    title: Dashboard Name
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: dashboard.title
+  - name: Status
+    title: Status
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.status
+  - name: Source
+    title: Source
+    type: field_filter
+    default_value: query
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: history.result_source
+  - name: Dashboard Creator
+    title: Dashboard Creator
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: tag_list
+      display: popover
+    model: system__activity
+    explore: history
+    listens_to_filters: []
+    field: dashboard_creator.name
   - name: Dialect
     title: Dialect
     type: field_filter
@@ -1473,29 +1556,3 @@
     explore: dashboard
     listens_to_filters: []
     field: dashboard.moved_to_trash
-  - name: Model
-    title: Model
-    type: field_filter
-    default_value: ''
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: tag_list
-      display: popover
-    model: system__activity
-    explore: history
-    listens_to_filters: []
-    field: query.model
-  - name: Explore
-    title: Explore
-    type: field_filter
-    default_value: ''
-    allow_multiple_values: true
-    required: false
-    ui_config:
-      type: tag_list
-      display: popover
-    model: system__activity
-    explore: history
-    listens_to_filters: []
-    field: query.view

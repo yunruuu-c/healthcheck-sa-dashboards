@@ -4,7 +4,9 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   crossfilter_enabled: true
+  load_configuration: wait
   description: ''
+  filters_location_top: false
   preferred_slug: M7pGq4cLpci8XiFOTXVw5l
   elements:
   - title: Async Processing time
@@ -38,8 +40,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 7
     col: 0
     width: 3
@@ -75,8 +78,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 7
     col: 3
     width: 3
@@ -113,8 +117,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 7
     col: 8
     width: 3
@@ -151,8 +156,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 7
     col: 11
     width: 3
@@ -189,8 +195,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 7
     col: 14
     width: 3
@@ -227,8 +234,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 11
     col: 18
     width: 3
@@ -265,8 +273,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 11
     col: 21
     width: 3
@@ -303,8 +312,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 7
     col: 18
     width: 3
@@ -341,8 +351,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 7
     col: 21
     width: 3
@@ -384,6 +395,7 @@
       Connection Name: history.connection_name
       Result Source: history.result_source
       Dialect: history.dialect
+      Query ID: query.id
     row: 15
     col: 19
     width: 4
@@ -420,8 +432,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 13
     col: 0
     width: 3
@@ -458,8 +471,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 13
     col: 3
     width: 3
@@ -496,8 +510,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 17
     col: 3
     width: 3
@@ -534,8 +549,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 17
     col: 0
     width: 3
@@ -572,8 +588,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 13
     col: 8
     width: 3
@@ -610,8 +627,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 13
     col: 11
     width: 3
@@ -648,8 +666,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 13
     col: 14
     width: 3
@@ -686,8 +705,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 17
     col: 8
     width: 3
@@ -724,8 +744,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 17
     col: 11
     width: 3
@@ -762,8 +783,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 17
     col: 14
     width: 3
@@ -800,8 +822,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 21
     col: 11
     width: 3
@@ -838,8 +861,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 25
     col: 0
     width: 3
@@ -876,8 +900,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 25
     col: 3
     width: 3
@@ -943,8 +968,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 32
     col: 0
     width: 8
@@ -1008,8 +1034,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 48
     col: 8
     width: 8
@@ -1073,8 +1100,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 48
     col: 0
     width: 8
@@ -1138,8 +1166,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 48
     col: 16
     width: 8
@@ -1204,8 +1233,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 64
     col: 0
     width: 8
@@ -1252,8 +1282,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 64
     col: 8
     width: 16
@@ -1284,7 +1315,6 @@
   - name: " (2)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: ''
     row: 5
     col: 6
@@ -1338,7 +1368,6 @@
   - name: Async Runtime Breakdown
     type: text
     title_text: Async Runtime Breakdown
-    subtitle_text: ''
     body_text: ''
     row: 29
     col: 0
@@ -1403,8 +1432,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 32
     col: 8
     width: 8
@@ -1486,8 +1516,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 32
     col: 16
     width: 8
@@ -1504,7 +1535,6 @@
   - name: " (9)"
     type: text
     title_text: ''
-    subtitle_text: ''
     body_text: ''
     row: 23
     col: 0
@@ -1541,8 +1571,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 25
     col: 8
     width: 3
@@ -1579,8 +1610,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 25
     col: 14
     width: 3
@@ -1617,8 +1649,9 @@
       User: user.name
       Connection Name: history.connection_name
       Result Source: history.result_source
-      Prepare: query_metrics.prepare
       Dialect: history.dialect
+      Query ID: query.id
+      Prepare Average Timerange: query_metrics.prepare
     row: 25
     col: 11
     width: 3
@@ -1629,14 +1662,14 @@
     subtitle_text: ''
     body_text: |-
       <nav style="font-size: 18px; padding: 5px 10px 0 10px; height: 60px">
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics">Performance Metrics</a>
-      <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_cloud__query_outliers">
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__performance_metrics?">Performance Metrics</a>
+      <a style="padding: 5px; border-top: solid 1px #4285F4; border-left: solid 1px #4285F4; border-right: solid 1px #4285F4; border-radius: 5px 5px 0 0; float: left; line-height: 40px; font-weight: bold;" href="/dashboards/healthcheck::google_cloud__query_outliers?">
       Outliers</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis">History</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery">Schedules</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries">Merged Queries</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count">Large Dashboards</a>
-        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_">Dashboard Optimisation</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__history_query_analysis?">History</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__content_delivery?">Schedules</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__merged_queries?">Merged Queries</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__large_dashboards__query_count?">Large Dashboards</a>
+        <a style="padding: 5px; border-bottom: solid 1px #4285F4; float: left; line-height: 40px;" href="/dashboards/healthcheck::google_pso__dashboard_optimisation_?">Dashboard Optimisation</a>
       </nav>
     row: 0
     col: 0
@@ -1761,18 +1794,18 @@
     explore: query_metrics
     listens_to_filters: []
     field: history.result_source
-  - name: Prepare
-    title: Prepare
+  - name: Prepare Average Timerange
+    title: Prepare Average Timerange
     type: field_filter
-    default_value: "[0,300]"
+    default_value: "[0,5000]"
     allow_multiple_values: true
     required: false
     ui_config:
-      type: range_slider
-      display: inline
+      type: advanced
+      display: popover
       options:
         min: 0
-        max: 300
+        max: 1000
     model: system__activity
     explore: query_metrics
     listens_to_filters: []
@@ -1780,13 +1813,31 @@
   - name: Dialect
     title: Dialect
     type: field_filter
-    default_value:
+    default_value: trino,postgres
     allow_multiple_values: true
     required: false
     ui_config:
       type: tag_list
       display: popover
+      options:
+      - postgres
+      - trino
+      - bigquery_standard_sql
     model: system__activity
     explore: query_metrics
     listens_to_filters: []
     field: history.dialect
+  - name: Query ID
+    title: Query ID
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options: []
+    model: system__activity
+    explore: query_metrics
+    listens_to_filters: []
+    field: query.id
